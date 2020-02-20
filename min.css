@@ -1,0 +1,217 @@
+/*
+ * min.css for OpenJSCAD.org viewer
+ */
+
+ * {
+  box-sizing: border-box;
+}
+ .jscad-container {
+  margin: 5px 15px 5px 5px; /* not inherited */
+  padding: 20px; /* not inherited */
+  color: Black;
+	font-family: Georgia, "Times New Roman", Times, serif;
+  border: 0;
+  min-width: 500px;
+  max-width: 1200px;
+}
+
+.column {
+  float: left;
+  min-width: 300px;
+}
+#header {
+  margin: 5px; /* not inherited */
+}
+
+#mainUI
+{
+  max-width: 1200px;
+
+  height: 700px;
+  margin: 0px auto;
+}
+
+#postUI
+{
+  display: inline-block;
+  border: thin solid rgb(200,200,200);
+  width: 93%;
+  margin: 11px;
+  padding: 10px;
+}
+
+#urlDiv {
+  margin: 10px;
+  padding: 10px;
+
+}
+
+#viewerContext, #tail, #mainUI
+{
+  height: 600px;
+}
+
+#viewerContext {
+  margin: 5px; /* not inherited */
+  border: thin solid gray; /* not inherited */
+  padding: 0px; /* not inherited */
+  width: 58%;
+  background: white;
+  
+
+  top: 0px;
+  bottom: 0px;
+}
+
+canvas { 
+  margin: 0px; /* not inherited */
+  border: 0px none gray; /* not inherited */
+  padding: 0px; /* not inherited */
+
+  width: 100%;
+  height: 100%;
+
+  cursor: move; 
+}
+
+#parametersdiv {
+  border: thin solid rgb(200,200,200);
+  border-radius: 0;     
+  width: 95%;
+  height: 100%;
+  background: white;
+  opacity: 0.8;
+  text-align: center;
+
+	padding: 10px 20px;
+	background: #f4f7f8;
+	margin: 0px;
+	padding: 20px;
+	background: #f4f7f8;
+	border-radius: 0px;
+	font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+#parametersdiv table {
+  margin-bottom: 5px;
+
+  text-align: left;
+  font-size: 0.8em;
+  font-weight: normal;
+}
+
+#parametersdiv th {
+  margin:  0px; /* not inherited */
+  border:  0px none gray; /* not inherited */
+  padding: 5px; /* not inherited */
+  text-align: center;
+  font-weight: bold;
+  margin: 0 auto;
+
+}
+
+#parametersdiv th.caption {
+  font-weight: bold;
+  font-size: large;
+  text-align: left;
+}
+
+#parametersdiv td.caption {
+  text-align: right;
+}
+
+#parametersdiv td {
+  margin:  0px; /* not inherited */
+  border:  0px none gray; /* not inherited */
+  padding: 2px; /* not inherited */
+}
+
+#statusdiv {
+  text-align: left;
+  position: fixed;
+  margin: 14px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+
+}
+
+#parametersdiv input, #parametersdiv textarea, #parametersdiv select {
+  font-size: 1em;
+  background: #fff;
+  border: 1;
+  padding: 1px;
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-family: Georgia, "Times New Roman", Times, serif;
+	background: rgba(255,255,255,.1);
+	border: none;
+	border-radius: 4px;
+	font-size: 15px;
+	margin: 0;
+	outline: 0;
+	padding: 10px;
+	width: 100%;
+	box-sizing: border-box; 
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box; 
+	background-color: #e8eeef;
+	color: black;
+	-webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+	box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+}
+
+#parametersdiv textarea {
+  resize: none;
+  width: 100%;
+}
+
+
+#designID {
+  resize: none;
+  width: 96%;    
+}
+
+
+#tail { 
+  margin: 5px; /* not inherited */
+  width: 38%
+}
+
+#busy {
+  vertical-align: middle;
+}
+
+.parameterstable {
+  margin: 0 0;
+}
+
+#copyDesignID {
+  padding: 6px 6px;
+  border: none;
+  cursor: pointer;
+  background-size: 100%; 
+  border-color: lightgrey;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 0;
+}
+
+
+input.checkbox {
+  height : 24px/*desired height*/;
+  width : 24px/*desired height*/;
+
+}
+
+@media only screen and (max-width: 900px) {
+  /* For mobile phones: */
+  .caption, #parametersdiv input, #parametersdiv textarea, #parametersdiv select {
+    font-size: 16pt  }
+    .column {
+      float: left;
+      width: 100%;
+    }
+    #parametersdiv, #tail, #viewerContext {
+      width: 100%
+    }
+
+}
