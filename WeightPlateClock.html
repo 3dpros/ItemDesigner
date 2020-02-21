@@ -9,12 +9,13 @@
   <meta name="viewport" content="width=device-width">
   <title>Customizer</title>
   <link rel="stylesheet" href="min.css" type="text/css">
-
 </head>
 
 
 <body>
+
   <script src="dist/min.js"></script>
+
 <div id="mainUI">
 <!-- setup display of the errors as required by OpenJSCAD.js -->
   <div class="jscad-container">
@@ -52,8 +53,14 @@
     </div>
     <img src="imgs/logo_2.0.png" width="48" class= "center">
 
+
 </div>
 </div>
 </body>
-
+<script>    
+  // IE is not supported
+  if (navigator.userAgent.indexOf('Trident') > 0) {
+    document.body.innerHTML = "    <div id='postUI'>The Item Designer is not supported by the Internet Explorer browser. Please use one of these browsers:<ul><li>Microsoft Edge </li><li><a href = \"https://www.google.com/chrome/\">Google Chrome</a></li><li><a href = \"https://www.mozilla.org/en-US/firefox/new/\">Mozilla Firefox</a></li></ul></div>";
+  }
+  </script>
 </html>
