@@ -33,16 +33,21 @@ if(priceControl !== null) {
 
   var plateColor =   html2rgb(param.colorOpt)
   var textColor = plateColor.map((a, i) => a + .05);
+  var baseTextSize = 28;
+  var topText = trimText(param.TopText)
+  var bottomText = trimText(param.BottomText)
 
-  var maxTextLength = max(getTotalCharLen(param.TopText, secondLineFactor = .2), getTotalCharLen(param.BottomText, secondLineFactor = .2))
-  var textSize = min(28, 5000/maxTextLength)
+
+
+  var maxTextLength = max(getTotalCharLen(topText, baseTextSize, [0,0.2]), getTotalCharLen(bottomText, baseTextSize, [0.2,0]))
+  var textSize = min(baseTextSize, 5000/maxTextLength)
 var textHeight = 4;
 
 
 if(param.LeftText.trim() !== ''){allObjects.push(linear_extrude({height: textHeight}, straightText(param.LeftText, textSize = textSize, maxCharsPerLine = 5)).setColor(textColor).translate([-110,-7.5,0]));}
 if(param.RightText.trim() !== ''){allObjects.push(linear_extrude({height: textHeight}, straightText(param.RightText, textSize = textSize, maxCharsPerLine = 5)).setColor(textColor).translate([110,-7.5,0]))}
-if(param.TopText.trim() !== ''){allObjects.push(linear_extrude({height: textHeight}, revolveMultilineText(param.TopText, 85, 130, true, textSize = textSize)).setColor(textColor));}
-if(param.BottomText.trim() !== ''){allObjects.push(linear_extrude({height: textHeight}, revolveMultilineText(param.BottomText, 85, 130, false, textSize = textSize)).setColor(textColor));}
+if(param.TopText.trim() !== ''){allObjects.push(linear_extrude({height: textHeight}, revolveMultilineText(topText, 85, 130, true, textSize = textSize)).setColor(textColor));}
+if(param.BottomText.trim() !== ''){allObjects.push(linear_extrude({height: textHeight}, revolveMultilineText(bottomText, 85, 130, false, textSize = textSize)).setColor(textColor));}
 if(ClockMode) {
   cutObjects.push(clockTicks().setColor(textColor));
   unscaledCutObjects.push(cylinder({r: 4, h: 30, center: true}).setColor(textColor)) 
@@ -64,17 +69,30 @@ else {
   return item.union(otherItems).subtract(unscaledCutObjects);
 }
 
+function trimText(text, maxCharsPerLine = 14, maxLines = 2) {
+  var trimmedArray = [];
+  var textArray = text.split('\n').slice(0,maxLines)
+  textArray.forEach((word) => {
+    trimmedArray.push(word.substr(0,maxCharsPerLine));
+  });
+  return trimmedArray.join('\n');
 
+}
 
-function revolveMultilineText(text, textAngle = 90, radius = 180, invert = true, textSize = 28) {
-  var textArray = text.split('\n');
+function revolveMultilineText(text, textAngle = 90, radius = 180, faceUp = true, textSize = 28) {
+  var textArray = text.split('\n')
   if(textArray.length == 1)  {
-    return revolveText(text, textAngle, radius, invert, textSize);
+    return revolveText(text, textAngle, radius, faceUp, textSize, maxCharsPerLine);
+  }
+  
+  if(!faceUp)
+  {
+    textArray = textArray.reverse();
   }
   var allText = [];
   var lineRadius = radius + (textArray.length - 1)/2*textSize -10
   textArray.forEach((word) => {
-    allText.push(revolveText(word, textAngle, lineRadius, invert, textSize));
+    allText.push(revolveText(word, textAngle, lineRadius, faceUp, textSize, maxCharsPerLine));
     lineRadius -= textSize
   });
   return union(allText)

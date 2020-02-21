@@ -32824,7 +32824,7 @@ module.exports={
   "_resolved": "https://registry.npmjs.org/estraverse/-/estraverse-4.3.0.tgz",
   "_shasum": "398ad3f3c5a24948be7725e83d11a7de28cdbd1d",
   "_spec": "estraverse@^4.2.0",
-  "_where": "C:\\Users\\Al\\Dropbox\\3DPros - General\\Tools\\OpenJScad\\OpenJSCAD.org\\packages\\web",
+  "_where": "C:\\jscad\\ItemDesigner",
   "bugs": {
     "url": "https://github.com/estools/estraverse/issues"
   },
@@ -47221,7 +47221,16 @@ Processor.prototype = {
     var href = [];
     var pretty = [];
     for (var id in parameters) {
-      if (!id.includes('Internal')) href.push(id + '=' + encodeURIComponent(parameters[id]));
+      var isDefault = false;
+      if (this.paramDefinitions[id] !== null) {
+        var defaultParam = this.paramDefinitions.find(function (x) {
+          return x.name === id;
+        });
+        isDefault = parameters[id] == defaultParam.initial;
+      }
+      if (!id.includes('Internal') && !isDefault) {
+        href.push(id + '=' + encodeURIComponent(parameters[id]));
+      }
     }
     var baseCode = href.join('&');
     var fullURL = fullUrlNoParams + '#' + baseCode;

@@ -27,13 +27,12 @@ function getParameterDefinitions () {
   ];
 }
 
-
 function main (param) {
   include("/../kettlebell.jscad");
   include("/../base.jscad");
-
-  var maxTextLength = getTotalCharLen(param.TopText);
-  var textSize = min(10, 1500/maxTextLength)
+  var baseTextSize = 8
+  var maxTextLength = getTotalCharLen(param.TopText, baseTextSize, [.1,0,.1]);
+  var textSize = min(baseTextSize, baseTextSize*80/maxTextLength)
   var textItems = []
 
   var item = kettlebell().setColor(html2rgb(param.colorOpt))

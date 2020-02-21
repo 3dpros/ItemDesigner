@@ -515,8 +515,15 @@ Processor.prototype = {
     var href = [];
     var pretty = [];
     for (var id in parameters) {
-      if(!id.includes('Internal'))
-        href.push(`${id}=${encodeURIComponent(parameters[id])}`)
+      var isDefault = false
+      if(this.paramDefinitions[id] !== null) {
+        var defaultParam = this.paramDefinitions.find(x => x.name === id);
+        isDefault = (parameters[id] == defaultParam.initial);
+      }    
+      if(!id.includes('Internal')  && !isDefault) {
+                href.push(`${id}=${encodeURIComponent(parameters[id])}`)
+       }
+
     }
     var baseCode = href.join('&')
     var fullURL = fullUrlNoParams + '#' + baseCode;
