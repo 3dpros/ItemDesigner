@@ -90,7 +90,7 @@ function revolveMultilineText(text, textAngle = 90, radius = 180, faceUp = true,
     textArray = textArray.reverse();
   }
   var allText = [];
-  var lineRadius = radius + (textArray.length - 1)/2*textSize -10
+  var lineRadius = radius + (textArray.length - 1)/2*textSize -5
   textArray.forEach((word) => {
     allText.push(revolveText(word, textAngle, lineRadius, faceUp, textSize, maxCharsPerLine));
     lineRadius -= textSize

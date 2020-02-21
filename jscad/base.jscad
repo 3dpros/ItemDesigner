@@ -20,7 +20,7 @@ straightText = function straightText(text, textSize = 20, maxCharsPerLine = 20, 
         include("/../fonts/opentype.min.jscad");
         include("/../fonts/fontsgothicb_ttf.jscad");
 
-      var vSpacing = textSize * 1.5
+      var vSpacing = textSize * 1.25
       var textArray = text.split('\n').slice(0,maxlines)
       var allText = [];
     
