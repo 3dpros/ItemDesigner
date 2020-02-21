@@ -17,7 +17,6 @@ hr {
   color: Black;
 	font-family: Georgia, "Times New Roman", Times, serif;
   border: 0;
-  min-width: 500px;
   max-width: 1200px;
 }
 
@@ -223,8 +222,14 @@ input.checkbox {
       float: left;
       width: 100%;
     }
-    #parametersdiv, #tail, #viewerContext {
-      width: 100%
+    #parametersdiv, #tail, #viewerContext, #urlDiv, #mainUI, #postUI {
+      width: 100%;
+      margin: auto;
+       
     }
+    #viewerContext, #tail, #mainUI
+{
+  height: 500px;
+}
 
 }
