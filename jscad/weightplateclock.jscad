@@ -38,7 +38,7 @@ function main (param) {
 
   var item = weightPlateBase(param, ClockMode = true);
   if(param.showKitInternal) {
-    item = item.union(clockAssm(param.sizeOpt, param.colorOpt == '#1c1c1c').translate([-102,-47,-81])); }
+    item = item.union(clockAssm(param.sizeOpt, param.color == 'black').translate([-102,-47,-81])); }
   item = allItemBase(param, item);
   return item;
 }
