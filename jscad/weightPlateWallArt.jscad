@@ -36,6 +36,6 @@ function main (param) {
 
 
   var item = weightPlateBase(param,  ClockMode = false);
-  item = allItemBase(param, item).subtract(cylinder({r: 4, h: 12, center: false}).translate([0, 174,-5]));
+  item = allItemBase(param, item);
   return item;
 }

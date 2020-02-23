@@ -31,7 +31,7 @@ if(priceControl !== null) {
   var otherItems = [];
   var p = []; // our stack of extruded line segments
   colorValues = {
-    'gray': '#dedede',
+    'gray': '#ebebeb',
     'black': '#1c1c1c'};
 
   var plateColor = html2rgb(colorValues[param.color])
@@ -53,13 +53,15 @@ if(param.TopText.trim() !== ''){allObjects.push(linear_extrude({height: textHeig
 if(param.BottomText.trim() !== ''){allObjects.push(linear_extrude({height: textHeight}, revolveMultilineText(bottomText, 85, 130, false, textSize = textSize)).setColor(textColor));}
 if(ClockMode) {
   cutObjects.push(clockTicks().setColor(textColor));
+  //clock kit hole
   unscaledCutObjects.push(cylinder({r: 4, h: 30, center: true}).setColor(textColor)) 
 }
 else {
+  //center hole
   cutObjects.push(cylinder({r: 21, h: 30, center: true}).setColor(textColor)) 
-
+  //hanger hole on back
+  cutObjects.push(cylinder({r: 4, h: 12, center: false}).translate([0, 174,-5]).setColor(textColor))
 }
-  
 
   var b = allObjects[0].getBounds();
   var m = 2;
