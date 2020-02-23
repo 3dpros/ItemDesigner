@@ -51,7 +51,7 @@ getCharWidth = function getCharWidth(c, textSize = 28) {
     return getTextWidthBase(c, textSize, includeSpace = true)
     }
 
-getTotalCharLen = function getTotalCharLen(text, textSize, LineFactor = [0, .2])
+getTotalCharLen = function getTotalCharLen(text, textSize, LineFactor = [0, 0, 0])
 {
     include("/../fonts/opentype.min.jscad");
     include("/../fonts/fontsgothicb_ttf.jscad");
@@ -65,11 +65,11 @@ getTotalCharLen = function getTotalCharLen(text, textSize, LineFactor = [0, .2])
         var c = line.charAt(x);
         totalCharLen += getCharWidth(c, textSize);
       }
-      totalCharLens.push(totalCharLen * (1 + LineFactor[lineNum] * lineNum))
-     // console.log('total len of ' + line + ':' + totalCharLen)
+      totalCharLens.push(totalCharLen * (1 + LineFactor[lineNum]))
+      //log('total len of ' + line + ':' + totalCharLen)
       lineNum++;
     })
-  //  console.log('max len of ' + text + ':' + Math.max(...totalCharLens))
+    //log('max len of ' + text + ':' + Math.max(...totalCharLens))
   return Math.max(...totalCharLens);
 
 }

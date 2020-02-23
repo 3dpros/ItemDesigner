@@ -15,12 +15,12 @@ function getParameterDefinitions () {
     initial: '15',
     internal: true
     },
-    {name: 'colorOpt',
+    {name: 'color',
     type: 'choice',
     caption: 'Color',
-    values: ['#dedede', '#1c1c1c'],
+    values: ['gray', 'black'],
     captions: ['Gray', 'Black'],
-    initial: '15'
+    initial: ''
     },
     {name: 'bananaInternal', checked: false, type: 'checkbox', caption: 'Banana for Scale',  internal: true},
     //{name: 'color', type: 'color', initial: '#0F0F0F', caption: 'Color?'}
@@ -36,6 +36,6 @@ function main (param) {
 
 
   var item = weightPlateBase(param,  ClockMode = false);
-  item = allItemBase(param, item).subtract(cylinder({r: 4, h: 12, center: false}).translate([0, 174,-5]).setColor(html2rgb(param.colorOpt)));
+  item = allItemBase(param, item).subtract(cylinder({r: 4, h: 12, center: false}).translate([0, 174,-5]));
   return item;
 }

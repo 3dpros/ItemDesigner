@@ -30,8 +30,11 @@ if(priceControl !== null) {
   var allObjects = []; // our stack of objects
   var otherItems = [];
   var p = []; // our stack of extruded line segments
+  colorValues = {
+    'gray': '#dedede',
+    'black': '#1c1c1c'};
 
-  var plateColor =   html2rgb(param.colorOpt)
+  var plateColor = html2rgb(colorValues[param.color])
   var textColor = plateColor.map((a, i) => a + .05);
   var baseTextSize = 28;
   var topText = trimText(param.TopText)
@@ -75,7 +78,7 @@ function trimText(text, maxCharsPerLine = 14, maxLines = 2) {
   textArray.forEach((word) => {
     trimmedArray.push(word.substr(0,maxCharsPerLine));
   });
-  return trimmedArray.join('\n');
+  return trimmedArray.filter(x => x != '').join('\n');
 
 }
 

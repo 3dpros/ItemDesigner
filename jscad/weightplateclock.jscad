@@ -7,12 +7,12 @@ function getParameterDefinitions () {
     {name: 'BottomText', initial: 'STANDARD', type: 'textbox', caption: 'Bottom Text', maxLength: 14},
     {name: 'LeftText', initial: '45\nLBS', type: 'textbox', caption: 'Left Text'},
     {name: 'RightText', initial: '20.4\nKGS', type: 'textbox', caption: 'Right Text'},
-    {name: 'colorOpt',
+    {name: 'color',
     type: 'choice',
     caption: 'Color',
-    values: ['#dedede', '#1c1c1c'],
+    values: ['gray', 'black'],
     captions: ['Gray', 'Black'],
-    initial: '15'
+    initial: ''
     },
     {name: 'sizeOpt',
     type: 'choice',
