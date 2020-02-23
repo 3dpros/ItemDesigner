@@ -224,12 +224,12 @@ input.checkbox {
     }
     #parametersdiv, #tail, #viewerContext, #urlDiv, #mainUI, #postUI {
       width: 100%;
-      margin: auto;
+      margin: 4px;
        
     }
     #viewerContext, #tail, #mainUI
 {
-  height: 500px;
+  height: 600px;
 }
 
 }
