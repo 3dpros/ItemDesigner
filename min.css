@@ -231,5 +231,7 @@ input.checkbox {
 {
   height: 600px;
 }
-
+.caption {
+  width: 40%;
+}
 }
