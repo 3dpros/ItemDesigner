@@ -14,21 +14,28 @@ logMsg = function log(msg) {
     if(debugControl !== null)
       debugControl.innerHTML += '<br>' + msg;
     }
+
+trimText = function trimText(text, maxCharsPerLine = 14, maxLines = 2) {
+      var trimmedArray = [];
+      var textArray = text.split('\n').slice(0,maxLines)
+      textArray.forEach((word) => {
+        trimmedArray.push(word.substr(0,maxCharsPerLine));
+      });
+      return trimmedArray.filter(x => x != '').join('\n');
     
-straightText = function straightText(text, textSize = 20, maxCharsPerLine = 20, maxlines = 3)
+    }
+
+straightText = function straightText(text, textSize = 20, font = 'gothic')
     {
-        include("/../fonts/opentype.min.jscad");
-        include("/../fonts/fontsgothicb_ttf.jscad");
 
       var vSpacing = textSize * 1.25
-      var textArray = text.split('\n').slice(0,maxlines)
+      var textArray = text.split('\n')
       var allText = [];
     
-      var zh = vSpacing/2 * (max(0,textArray.length - 1));
+      var zh = vSpacing/2 * (max(0,textArray.length - 1)) - textSize/2.7;
       textArray.forEach((word) => {
         if(word.trim() !== ''){
-          word = word.substr(0,maxCharsPerLine);
-         let extrudedText = getText(word, textSize).translate([-getTextWidth(word, textSize)/2,zh,0]);
+         let extrudedText = getText(word, textSize, font).translate([-getTextWidth(word, textSize, font)/2,zh,0]);
     
           zh-=vSpacing;
           allText.push(extrudedText)
@@ -37,48 +44,126 @@ straightText = function straightText(text, textSize = 20, maxCharsPerLine = 20, 
       return union(allText);
     }     
 
-getText = function getText(text, textSize){
-        var gothic = Font3D.parse(fontsgothicb_ttf_data.buffer);
-        var cagText = Font3D.cagFromString(gothic, text, textSize);
+revolveMultilineText =  function revolveMultilineText(text, textAngle = 90, radius = 180, faceUp = true, textSize = 28, font = 'gothic') {
+
+      var textArray = text.split('\n')
+      if(textArray.length == 1)  {
+        return revolveText(text, textAngle, radius, faceUp, textSize, font);
+      }
+      
+      if(!faceUp)
+      {
+        textArray = textArray.reverse();
+      }
+      var allText = [];
+      var lineRadius = radius + (textArray.length - 1)/2*textSize -5
+      textArray.forEach((word) => {
+        allText.push(revolveText(word, textAngle, lineRadius, faceUp, textSize, font));
+        lineRadius -= textSize
+      });
+      return union(allText);
+    }
+    
+    
+    function revolveText(text, textAngle, radius, invert, textSize, font)
+    {
+      var invertVal = invert?1:-1
+      var totalCharLen = getTotalCharLen(text, textSize, font);
+      var word = [];
+      var iRadius = radius-invertVal*10 + (28-textSize)/2;
+    
+    
+      spanAngle = min(textAngle, getTextWidth(text, textSize, font) /2 * 130/radius);
+      
+      var charLen = 0;
+      for (var x = 0; x < text.length; x++)
+      {
+        var c = text.charAt(x);
+        if(c.trim() !== ''){
+            var charWidth = getCharWidth(c, textSize, font);
+            charLen += charWidth;
+            word.push(getText(c,textSize, font).translate([-getCharWidth(c, textSize, font)/2,invertVal*iRadius,0]).rotateZ(-invertVal*( (charLen- charWidth/2)/totalCharLen*spanAngle) +invertVal*(spanAngle/2)));
+          }
+        }
+      if(invertVal>0){
+         return union(word); 
+        } else {
+          return union(word).rotateZ(180); 
+         }
+  }
+
+  getTotalCharLen = function getTotalCharLen(text, textSize, font, LineFactor = [0, 0, 0]) {    
+    var totalCharLens = [];
+    var lineNum = 0
+    log('start')
+    text.split('\n').forEach((line) => {
+        var totalCharLen = 0
+        for (var x = 0; x < line.length; x++)
+        {
+          var c = line.charAt(x);
+          totalCharLen += getCharWidth(c, textSize, font);
+        }
+        totalCharLens.push(totalCharLen * (1 + LineFactor[lineNum]))
+        log('total len of ' + line + ':' + totalCharLen)
+        lineNum++;
+      })
+      //log('max len of ' + text + ':' + Math.max(...totalCharLens))
+    return Math.max(...totalCharLens);
+  
+  }
+
+
+function getCharWidthDefaultFont(c)
+{
+  return max(10,vector_char(0,0,c).width);
+}
+
+function getText(text, textSize, fontID){
+  include("/../fonts/opentype.min.jscad");
+
+        var font
+        switch(fontID.toLowerCase()) {
+          case 'gothic':
+            font = getTextGothicBold();
+            break;
+          case 'arial':
+            font = getTextArialRounded();
+            break;
+          default:
+            logMsg('fail');
+            throw('invalid font: ' + fontID)
+        }
+        var cagText = Font3D.cagFromString(font, text, textSize);
         return union(cagText, textSize);
       
       }
 
-getTextWidth = function getTextWidth(c, textSize = 28) {
-    return getTextWidthBase(c, textSize, includeSpace = false)
-    }
-getCharWidth = function getCharWidth(c, textSize = 28) {
-    return getTextWidthBase(c, textSize, includeSpace = true)
-    }
+function getTextGothicBold() {
+  include("/../fonts/fontsgothicb_ttf.jscad");
+  return Font3D.parse(fontsgothicb_ttf_data.buffer);
+}
 
-getTotalCharLen = function getTotalCharLen(text, textSize, LineFactor = [0, 0, 0])
-{
-    include("/../fonts/opentype.min.jscad");
-    include("/../fonts/fontsgothicb_ttf.jscad");
-    
-  var totalCharLens = [];
-  var lineNum = 0
-  text.split('\n').forEach((line) => {
-      var totalCharLen = 0
-      for (var x = 0; x < line.length; x++)
-      {
-        var c = line.charAt(x);
-        totalCharLen += getCharWidth(c, textSize);
-      }
-      totalCharLens.push(totalCharLen * (1 + LineFactor[lineNum]))
-      //log('total len of ' + line + ':' + totalCharLen)
-      lineNum++;
-    })
-    //log('max len of ' + text + ':' + Math.max(...totalCharLens))
-  return Math.max(...totalCharLens);
+
+function getTextArialRounded() {
+  include("/../fonts/arlrdbd_ttf.jscad")
+  return Font3D.parse(arlrdbd_ttf_data.buffer);
 
 }
 
-function getTextWidthBase(c, textSize = 28, includeSpace) {
+function getTextWidth(c, textSize = 28, font) {
+    return getTextWidthBase(c, textSize, includeSpace = false, font)
+    }
+function getCharWidth(c, textSize = 28, font) {
+    return getTextWidthBase(c, textSize, includeSpace = true, font)
+    }
+
+
+
+function getTextWidthBase(c, textSize = 28, includeSpace, font) {
     if(c.trim() !== '')
     {
-    var character = getText(c,1).toPoints();
-    console.log(character);
+    var character = getText(c,1, font).toPoints();
+    log(character);
     var minVal = character.reduce((minVal, p) => p.x < minVal ? p.x : minVal, character[0].x)
     var maxVal = character.reduce((maxVal, p) => p.x > maxVal ? p.x : maxVal, character[0].x);
     var letterWidth = maxVal-minVal
