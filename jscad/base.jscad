@@ -79,9 +79,10 @@ revolveMultilineText =  function revolveMultilineText(text, textAngle = 90, radi
       for (var x = 0; x < text.length; x++)
       {
         var c = text.charAt(x);
-        if(c.trim() !== ''){
+
             var charWidth = getCharWidth(c, textSize, font);
             charLen += charWidth;
+          if(c.trim() !== ''){
             word.push(getText(c,textSize, font).translate([-charWidth/2,invertVal*iRadius,0]).rotateZ(-invertVal*( (charLen- charWidth/2)/totalCharLen*spanAngle) +invertVal*(spanAngle/2)));
           }
         }
@@ -191,7 +192,7 @@ function getTextWidthBase(c, textSize = 28, includeSpace, font) {
     }
     else
     {
-         return textSize;
+         return textSize / 1.2;
     }    
 }
 
