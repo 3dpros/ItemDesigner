@@ -636,8 +636,9 @@ Processor.prototype = {
 
   createMultilineTextControl: function (definition, prevValue) {
     var control = document.createElement('textarea')
-    control.paramName = definition.name
-    control.paramType = definition.type
+    control.paramName = definition.name;
+    control.paramType = definition.type;
+
     if (prevValue !== undefined) {
       control.value  = prevValue;}
     else

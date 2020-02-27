@@ -213,6 +213,11 @@ input.checkbox {
 
 }
 
+textarea {
+  white-space: nowrap;  
+  overflow: auto;
+}
+
 @media only screen and (max-width: 900px) {
   /* For mobile phones: */
   .caption, #parametersdiv input, #parametersdiv textarea, #parametersdiv select {

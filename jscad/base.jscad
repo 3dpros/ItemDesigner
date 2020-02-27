@@ -82,7 +82,7 @@ revolveMultilineText =  function revolveMultilineText(text, textAngle = 90, radi
         if(c.trim() !== ''){
             var charWidth = getCharWidth(c, textSize, font);
             charLen += charWidth;
-            word.push(getText(c,textSize, font).translate([-getCharWidth(c, textSize, font)/2,invertVal*iRadius,0]).rotateZ(-invertVal*( (charLen- charWidth/2)/totalCharLen*spanAngle) +invertVal*(spanAngle/2)));
+            word.push(getText(c,textSize, font).translate([-charWidth/2,invertVal*iRadius,0]).rotateZ(-invertVal*( (charLen- charWidth/2)/totalCharLen*spanAngle) +invertVal*(spanAngle/2)));
           }
         }
       if(invertVal>0){
@@ -92,7 +92,7 @@ revolveMultilineText =  function revolveMultilineText(text, textAngle = 90, radi
          }
   }
 
-  getTotalCharLen = function getTotalCharLen(text, textSize, font, LineFactor = [0, 0, 0]) {    
+  getTotalCharLen = function getTotalCharLen(text, textSize, font, LineFactor = [0, 0, 0,0,0,0,0,0]) {    
     var totalCharLens = [];
     var lineNum = 0
     log('start')
@@ -112,6 +112,22 @@ revolveMultilineText =  function revolveMultilineText(text, textAngle = 90, radi
   
   }
 
+  colorNameToRGB = function colorNameToRGB(colorName) {
+  colorValues = {
+    'gray': '#ebebeb',
+    'black': '#1c1c1c',
+    'blue': '#242da6',
+    'red': '#c72222',
+    'green': '#24a642'
+  };
+  colorName = colorName.toLowerCase()
+  if(colorValues.hasOwnProperty(colorName)) {  
+    return html2rgb(colorValues[colorName])
+  } else {
+    return  html2rgb('black')
+  }
+
+  }
 
 function getCharWidthDefaultFont(c)
 {
@@ -164,7 +180,8 @@ function getTextWidthBase(c, textSize = 28, includeSpace, font) {
     {
     var character = getText(c,1, font).toPoints();
     log(character);
-    var minVal = character.reduce((minVal, p) => p.x < minVal ? p.x : minVal, character[0].x)
+    var minVal =100;
+    minVal = character.reduce((minVal, p) => p.x < minVal ? p.x : minVal, character[0].x)
     var maxVal = character.reduce((maxVal, p) => p.x > maxVal ? p.x : maxVal, character[0].x);
     var letterWidth = maxVal-minVal
     if(includeSpace)
