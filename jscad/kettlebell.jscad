@@ -1,7 +1,7 @@
-  kettlebell = function kettlebell() { return union(
+  kettlebell = function kettlebell(mode = 0) {
     // objects: 1
     // object #undefined: triangles: 11560
-    polyhedron({ points: [
+    var item = polyhedron({ points: [
       [93.16133880615234,58,25],
       [96.02717590332031,57.86985778808594,25.261688232421875],
       [95.99150848388672,57.86985778808594,25.521209716796875],
@@ -46243,5 +46243,11 @@
       [34671,34672,34673],
       [34674,34675,34676],
       [34677,34678,34679]] }).scale([1.5,1.5,1.5]).translate([-139,-38,-37.5])
-    ); }
+      if(mode == 1) {
+        item = item.subtract(cylinder({r1: 17, r2: 25, h: 50, center: [true, true, false]}).rotateX(90).rotateZ(-180))
+      } else if (mode == 2){
+        item = item.subtract(cube({size:[40,40,75],  round: true, center: [true, true, false]}).translate([0,0,-20]).rotateX(90).rotateZ(-180))
+      }
+      return item
+     }
     
