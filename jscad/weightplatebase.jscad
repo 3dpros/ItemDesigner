@@ -14,7 +14,7 @@ include("/../base.jscad");
   var otherItems = [];
   var p = []; // our stack of extruded line segments
 
-  var plateColor = colorNameToRGB(colorValues[param.color])
+  var plateColor = colorNameToRGB(param.color)
   var textColor = plateColor.map((a, i) => a + .05);
   var baseTextSize = bumperPlate?36:28;
   var topText = trimText(param.TopText)
