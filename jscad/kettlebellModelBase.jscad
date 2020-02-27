@@ -6,7 +6,7 @@ kettlebellModel = function kettlebellModel (param) {
  var text = trimText(param.Text, maxCharsPerLine = 14, maxLines = 4)
 
   var maxTextLength = getTotalCharLen(text, baseTextSize, param.style);
-  var textSize = min(baseTextSize, baseTextSize*80/maxTextLength)
+  var textSize = min(baseTextSize, baseTextSize*70/maxTextLength)
   var textItems = []
 
   var item = kettlebell().setColor(colorNameToRGB(param.color))
@@ -21,7 +21,9 @@ kettlebellModel = function kettlebellModel (param) {
     item = item.subtract(union(textItems).scale(param.sizeOpt/6));
   }
   item = allItemBase(param, item);
-    
+  if(param.sizeOpt > 10) { //camera zoom hack
+    return item.translate([0,-75,0]);
+  }  
   return item;
 }
 

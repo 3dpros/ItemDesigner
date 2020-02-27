@@ -22,9 +22,9 @@ function getParameterDefinitions () {
     {name: 'sizeOpt',
     type: 'choice',
     caption: 'Height',
-    values: ['6', '8'],
-    captions: ['6"', '8"'],
-    initial: '6', 
+    values: ['6', '8', '16'],
+    captions: ['6"', '8"', "unset"],
+    initial: '16', //hack until we have camera settings per model
     internal: true
   },
 

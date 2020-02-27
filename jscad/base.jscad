@@ -191,7 +191,7 @@ function getTextWidthBase(c, textSize = 28, includeSpace, font) {
     }
     else
     {
-         return 15;
+         return textSize;
     }    
 }
 
