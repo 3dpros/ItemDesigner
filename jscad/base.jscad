@@ -79,11 +79,12 @@ revolveMultilineText =  function revolveMultilineText(text, textAngle = 90, radi
       for (var x = 0; x < text.length; x++)
       {
         var c = text.charAt(x);
-
-            var charWidth = getCharWidth(c, textSize, font);
+            var result = getCharWidth(c, textSize, font)
+            var charWidth = result.width;
+            var shift = result.shift;
             charLen += charWidth;
           if(c.trim() !== ''){
-            word.push(getText(c,textSize, font).translate([-charWidth/2,invertVal*iRadius,0]).rotateZ(-invertVal*( (charLen- charWidth/2)/totalCharLen*spanAngle) +invertVal*(spanAngle/2)));
+            word.push(getText(c,textSize, font).translate([-shift,invertVal*iRadius,0]).rotateZ(-invertVal*( (charLen- charWidth/2)/totalCharLen*spanAngle) +invertVal*(spanAngle/2)));
           }
         }
       if(invertVal>0){
@@ -96,19 +97,16 @@ revolveMultilineText =  function revolveMultilineText(text, textAngle = 90, radi
   getTotalCharLen = function getTotalCharLen(text, textSize, font, LineFactor = [0, 0, 0,0,0,0,0,0]) {    
     var totalCharLens = [];
     var lineNum = 0
-    log('start')
     text.split('\n').forEach((line) => {
         var totalCharLen = 0
         for (var x = 0; x < line.length; x++)
         {
           var c = line.charAt(x);
-          totalCharLen += getCharWidth(c, textSize, font);
+          totalCharLen += getCharWidth(c, textSize, font).width;
         }
         totalCharLens.push(totalCharLen * (1 + LineFactor[lineNum]))
-        log('total len of ' + line + ':' + totalCharLen)
         lineNum++;
       })
-      //log('max len of ' + text + ':' + Math.max(...totalCharLens))
     return Math.max(...totalCharLens);
   
   }
@@ -168,32 +166,40 @@ function getTextArialRounded() {
 }
 
 function getTextWidth(c, textSize = 28, font) {
-    return getTextWidthBase(c, textSize, includeSpace = false, font)
+    return getTextWidthBase(c, textSize, laxKerning = false, font).width
     }
 function getCharWidth(c, textSize = 28, font) {
-    return getTextWidthBase(c, textSize, includeSpace = true, font)
+    return getTextWidthBase(c, textSize, laxKerning = true, font)
     }
 
 
 
-function getTextWidthBase(c, textSize = 28, includeSpace, font) {
+function getTextWidthBase(c, textSize = 28, laxKerning, font) {
+
+  var shift = 1
+  var finalWidth
     if(c.trim() !== '')
     {
-    var character = getText(c,1, font).toPoints();
-    log(character);
+     // var testingFontSize = 28
+
+    var character = getText(c,textSize, font).toPoints();
     var minVal =100;
     minVal = character.reduce((minVal, p) => p.x < minVal ? p.x : minVal, character[0].x)
     var maxVal = character.reduce((maxVal, p) => p.x > maxVal ? p.x : maxVal, character[0].x);
     var letterWidth = maxVal-minVal
-    if(includeSpace)
-        return pow(letterWidth, .6) *textSize;
+
+    shift = (letterWidth/2 + minVal);
+    if(laxKerning) {
+       finalWidth = (pow(letterWidth / textSize * 2, .5) )*textSize/2;
+      }
     else
-        return letterWidth*textSize;
+       finalWidth = letterWidth;
     }
     else
     {
-         return textSize / 1.2;
-    }    
+      finalWidth = textSize / 2;
+    }  
+    return {width: finalWidth, shift: shift}  
 }
 
       
