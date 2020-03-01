@@ -25,7 +25,7 @@ kettlebellModel = function kettlebellModel (param) {
   } else if(param.renderMode == 'text') {
     item = union(textItems).scale(param.sizeOpt/6)
   } else if (param.renderMode == 'base') {
-    item = item.subtract(union(textItems).scale(param.sizeOpt/6));
+    item = item.subtract(union(textItems)).scale(param.sizeOpt/6);
   }
   item = allItemBase(param, item);
   if(param.sizeOpt > 10) { //camera zoom hack - make the KB bigger and move it to the center of the frame
