@@ -11,7 +11,7 @@ weightPlateBase = function weightPlateBase (param, ClockMode, bumperPlate = fals
     var cutObjects = []; // our stack of objects
     var unscaledCutObjects = []; // our stack of objects
     var allObjects = []; // our stack of objects
-    var otherItems = [];
+    var textObjects = [];
     var p = []; // our stack of extruded line segments
   
     var plateColor = colorNameToRGB(param.color)
@@ -23,14 +23,14 @@ weightPlateBase = function weightPlateBase (param, ClockMode, bumperPlate = fals
   
   
     var maxTextLength = max(getTotalCharLen(topText, baseTextSize,  font = font, [0,0.2]), getTotalCharLen(bottomText, baseTextSize, font = font, [0.2,0]))
-    var textSize = min(baseTextSize, (180*baseTextSize)/maxTextLength)
+    var textSize = min(baseTextSize, (165*baseTextSize)/maxTextLength)
   var textHeight = 4;
   
   
-  if(param.LeftText.trim() !== ''){allObjects.push(linear_extrude({height: textHeight}, straightText(trimText(param.LeftText, 5,3), textSize = textSize, font = font)).setColor(textColor).translate([-110,0,0]));}
-  if(param.RightText.trim() !== ''){allObjects.push(linear_extrude({height: textHeight}, straightText(trimText(param.RightText, 5,3), textSize = textSize, font = font)).rotateZ(bumperPlate?180:0).setColor(textColor).translate([110,0,0]))}
-  if(param.TopText.trim() !== ''){allObjects.push(linear_extrude({height: textHeight}, revolveMultilineText(topText, 85, 130, true, textSize = textSize, font = font)).setColor(textColor));}
-  if(param.BottomText.trim() !== ''){allObjects.push(linear_extrude({height: textHeight}, revolveMultilineText(bottomText, 85, 130, bumperPlate, textSize = textSize, font = font)).rotateZ(180).setColor(textColor));}
+  if(param.LeftText.trim() !== ''){textObjects.push(linear_extrude({height: textHeight}, straightText(trimText(param.LeftText, 5,3), textSize = textSize, font = font)).setColor(textColor).translate([-110,0,0]));}
+  if(param.RightText.trim() !== ''){textObjects.push(linear_extrude({height: textHeight}, straightText(trimText(param.RightText, 5,3), textSize = textSize, font = font)).rotateZ(bumperPlate?180:0).setColor(textColor).translate([110,0,0]))}
+  if(param.TopText.trim() !== ''){textObjects.push(linear_extrude({height: textHeight}, revolveMultilineText(topText, 85, 130, true, textSize = textSize, font = font)).setColor(textColor));}
+  if(param.BottomText.trim() !== ''){textObjects.push(linear_extrude({height: textHeight}, revolveMultilineText(bottomText, 85, 130, bumperPlate, textSize = textSize, font = font)).rotateZ(180).setColor(textColor));}
   if(ClockMode) {
     cutObjects.push(clockTicks().setColor(textColor));
     //clock kit hole
@@ -39,18 +39,18 @@ weightPlateBase = function weightPlateBase (param, ClockMode, bumperPlate = fals
   else {
     //center hole
     cutObjects.push(cylinder({r: 21, h: 30, center: true}).setColor(textColor)) 
-    //hanger hole on back
+  //hanger hole on back
     cutObjects.push(cylinder({r: 4, h: 12, center: false}).translate([0, 174,-5]).setColor(textColor))
   }
   
-    var b = allObjects[0].getBounds();
-    var m = 2;
+
     if(!param.hidePlate){
       allObjects.push(weightPlate().rotateZ(45).translate([0,-254,-1]).setColor(plateColor));
     }
   
-    var item = union(allObjects).subtract(cutObjects).scale(size/14.7);
-    return item.union(otherItems).subtract(unscaledCutObjects);
+    var items = []
+    items.push(union(allObjects).subtract(cutObjects).scale(size/14.7).subtract(unscaledCutObjects));
+    return items.concat(textObjects);
   }
   
   function clockTicks() {

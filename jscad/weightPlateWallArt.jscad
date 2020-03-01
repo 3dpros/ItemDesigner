@@ -31,11 +31,7 @@ function getParameterDefinitions () {
 
 function main (param) {
   include("./weightplatebase.jscad");
-  include("/../clockKit.jscad");
-  include("/../base.jscad");
 
+  return weightPlateBase(param,  ClockMode = false);
 
-  var item = weightPlateBase(param,  ClockMode = false);
-  item = allItemBase(param, item);
-  return item;
 }
