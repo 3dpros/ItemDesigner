@@ -44,13 +44,14 @@ weightPlateBase = function weightPlateBase (param, ClockMode, bumperPlate = fals
   }
   
 
-    if(!param.hidePlate){
-      allObjects.push(weightPlate().rotateZ(45).translate([0,-254,-1]).setColor(plateColor));
-    }
+    allObjects.push(weightPlate().rotateZ(45).translate([0,-254,-1]).setColor(plateColor));
   
     var items = []
     items.push(union(allObjects).subtract(cutObjects).scale(size/14.7).subtract(unscaledCutObjects));
-    return items.concat(textObjects);
+    textObjects.forEach((item, index) => {textObjects[index] = item.scale(size/14.7)})
+    items = items.concat(textObjects);
+
+    return items
   }
   
   function clockTicks() {

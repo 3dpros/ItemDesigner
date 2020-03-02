@@ -196,7 +196,7 @@ canvas {
   margin: 0 0;
 }
 
-#copyDesignID {
+#copyDesignID, #generateFromDesignID {
   padding: 6px 6px;
   border: none;
   cursor: pointer;

@@ -36,9 +36,19 @@ function init () {
     }, internalViewer: (internalViewerMode == 'true')
     })
     
-    document.getElementById('copyDesignID').addEventListener('click', function (event) {
+    var copyButton = document.getElementById('copyDesignID')
+    if(copyButton !== null) {
+      copyButton.addEventListener('click', function (event) {
       copyText('designID');
-    }, false)
+    }, false) 
+  }
+
+  var generateButton = document.getElementById('generateFromDesignID')
+  if(generateButton !== null) {
+    generateButton.addEventListener('click', function (event) {
+      generateFromDesignID('designID');
+  }, false) 
+}
 
   // load the given design
   if (design) {
@@ -72,5 +82,22 @@ function copyText(controlID) {
   document.execCommand("copy");
 }
 
+function generateFromDesignID(controlID) {
+  var designId = document.getElementById(controlID).value
+  window.location.href = DesignIdToURL(designId);
+  window.location.reload();
+}
 
+function DesignIdToURL(designID) {
+  const fullUrlNoParams = location.protocol + '//' + location.host + location.pathname
 
+  var href = [];
+  var pretty = designID.split('|');
+  pretty.forEach((param) => {  
+    href.push(param)
+     });
+
+  var baseCode = href.join('&')
+  var fullURL = fullUrlNoParams + '#' + baseCode;
+  return fullURL;
+}

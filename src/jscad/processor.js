@@ -530,7 +530,7 @@ Processor.prototype = {
     pretty = href.join('|');
 
     var element = document.getElementById('urlLink').href =  fullURL
-    var element = document.getElementById('designID').value =  fullURL
+    var element = document.getElementById('designID').value =  pretty
 
     this.state = 1 // processing
     let that = this

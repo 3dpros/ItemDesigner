@@ -47237,7 +47237,7 @@ Processor.prototype = {
     pretty = href.join('|');
 
     var element = document.getElementById('urlLink').href = fullURL;
-    var element = document.getElementById('designID').value = fullURL;
+    var element = document.getElementById('designID').value = pretty;
 
     this.state = 1; // processing
     var that = this;
@@ -47650,9 +47650,19 @@ function init() {
     }, internalViewer: internalViewerMode == 'true'
   });
 
-  document.getElementById('copyDesignID').addEventListener('click', function (event) {
-    copyText('designID');
-  }, false);
+  var copyButton = document.getElementById('copyDesignID');
+  if (copyButton !== null) {
+    copyButton.addEventListener('click', function (event) {
+      copyText('designID');
+    }, false);
+  }
+
+  var generateButton = document.getElementById('generateFromDesignID');
+  if (generateButton !== null) {
+    generateButton.addEventListener('click', function (event) {
+      generateFromDesignID('designID');
+    }, false);
+  }
 
   // load the given design
   if (design) {
@@ -47682,6 +47692,26 @@ function copyText(controlID) {
   copyText.select();
   copyText.setSelectionRange(0, 99999);
   document.execCommand("copy");
+}
+
+function generateFromDesignID(controlID) {
+  var designId = document.getElementById(controlID).value;
+  window.location.href = DesignIdToURL(designId);
+  window.location.reload();
+}
+
+function DesignIdToURL(designID) {
+  var fullUrlNoParams = location.protocol + '//' + location.host + location.pathname;
+
+  var href = [];
+  var pretty = designID.split('|');
+  pretty.forEach(function (param) {
+    href.push(param);
+  });
+
+  var baseCode = href.join('&');
+  var fullURL = fullUrlNoParams + '#' + baseCode;
+  return fullURL;
 }
 
 },{"../../package.json":230,"../jscad/processor":236,"./errorDispatcher":237}],239:[function(require,module,exports){
