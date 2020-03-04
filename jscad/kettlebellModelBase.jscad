@@ -14,24 +14,26 @@ kettlebellModel = function kettlebellModel (param) {
   var bodyColor = colorNameToRGB(param.color)
 
   var item  = kettlebell(param.variant).setColor(bodyColor) 
-
+  var objects = [];
 
 
   var textVector = straightText(text, textSize, param.style)
   textItems.push(linear_extrude({height: 5}, textVector).translate([0,0,33]).setColor([1,1,1]));
   textItems.push(linear_extrude({height: 5}, textVector).translate([0,0,33]).rotateY(180).setColor([1,1,1]));
   if(param.renderMode == 'all') {
-  item = item.union(textItems).scale(param.sizeOpt/6)
+    objects.push(item);
+    objects = objects.concat(textItems)
+  item = objects
+  
   } else if(param.renderMode == 'text') {
-    item = union(textItems).scale(param.sizeOpt/6)
+    objects =  [(union(textItems))]
   } else if (param.renderMode == 'base') {
-    item = item.subtract(union(textItems)).scale(param.sizeOpt/6);
+    objects = [union(item).subtract(union(textItems))]
   }
-  item = allItemBase(param, item);
-  if(param.sizeOpt > 10) { //camera zoom hack - make the KB bigger and move it to the center of the frame
-    return item.translate([0,-75,0]);
-  }  
-  return item;
+  objects.forEach((item, index) => {
+    objects[index] = item.scale(param.sizeOpt/6).translate([0,-75,0])
+  })
+    return objects;
 }
 
 
