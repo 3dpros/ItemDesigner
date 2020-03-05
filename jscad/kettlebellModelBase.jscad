@@ -26,7 +26,7 @@ kettlebellModel = function kettlebellModel (param) {
   item = objects
   
   } else if(param.renderMode == 'text') {
-    objects =  [(union(textItems))]
+    objects = [union(item).intersect(union(textItems))]
   } else if (param.renderMode == 'base') {
     objects = [union(item).subtract(union(textItems))]
   }
