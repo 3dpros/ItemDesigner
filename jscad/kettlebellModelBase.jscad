@@ -9,7 +9,7 @@ kettlebellModel = function kettlebellModel (param) {
  var text = trimText(param.Text, maxCharsPerLine = 14, maxLines = 4)
 
   var maxTextLength = getTotalCharLen(text, baseTextSize, param.style);
-  var textSize = min(baseTextSize, baseTextSize*45/maxTextLength)
+  var textSize = min(baseTextSize, baseTextSize*40/maxTextLength)
   var textItems = []
   var bodyColor = colorNameToRGB(param.color)
 

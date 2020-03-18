@@ -23,7 +23,7 @@ weightPlateBase = function weightPlateBase (param, ClockMode, bumperPlate = fals
   
   
     var maxTextLength = max(getTotalCharLen(topText, baseTextSize,  font = font, [0,0.2]), getTotalCharLen(bottomText, baseTextSize, font = font, [0.2,0]))
-    var textSize = min(baseTextSize, (165*baseTextSize)/maxTextLength)
+    var textSize = min(baseTextSize, (150*baseTextSize)/maxTextLength)
   var textHeight = 4;
   
   
