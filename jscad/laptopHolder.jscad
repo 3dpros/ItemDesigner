@@ -6,8 +6,8 @@
 
 function getParameterDefinitions () {
   return [
-    {name: 'numSlots', initial: 3, min: 1, max: 5, step: 2, type: 'slider', caption: 'Number of Slots'},
-    {name: 'slotSize',initial: 18, min: 10, max: 30, step: 1,  type: 'slider', caption: 'Slot Size (mm)'}
+    {name: 'numSlots', initial: 3, min: 1, max: 5, step: 1, type: 'slider', caption: 'Number of Slots'},
+    {name: 'slotSize',initial: 30, min: 20, max: 40, step: 1,  type: 'slider', caption: 'Slot Size (mm)'}
   ];
 }
 
@@ -28,7 +28,7 @@ function main (params) {
 
   )).translate([i*(slotSize+thickness/2), 0, 0]))
   }
-  o.push(linear_extrude({height: 100},square({size: [(slotSize+thickness/2) * numSlots+17, 80], center: false}).translate([slotSize-10,-thickness,0])))
+  o.push(linear_extrude({height: 120},square({size: [(slotSize+thickness/2) * numSlots+17, 100], center: false}).translate([slotSize-10,-thickness,0])))
   return union(o).subtract(cuts).setColor([.3,.3,.3])
 
 }
