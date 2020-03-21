@@ -20,9 +20,9 @@ function main (params) {
 
   for(i=0;i<numSlots+2;i++)
   {
-     cuts.push(linear_extrude({height: 100},
+     cuts.push(linear_extrude({height: 120},
   hull(
-    circle({r: slotSize/2, center: false}).translate([-2, 80, 0]),
+    circle({r: slotSize/2, center: false}).translate([-2, 100, 0]),
     circle({r: 4, center: false}).translate([slotSize-12,0,0]),
     circle({r: 4, center: false}).translate([0,0,0])
 
