@@ -27,14 +27,15 @@ weightPlateBase = function weightPlateBase (param, ClockMode, bumperPlate = fals
   var font = bumperPlate?'arial':'gothic'
   
   
-    var maxTextLength = max(getTotalCharLen(topText, baseTextSize,  font = font, [0,0.2]), getTotalCharLen(bottomText, baseTextSize, font = font, [0.2,0]))
+    var maxTextLength = max(getTotalCharLen(topText, baseTextSize,  font = font, [0,0.2]), getTotalCharLen(bottomText, baseTextSize, font = font, param.invertText?[0,0.2]:[0.2,0]))
     var textSize = min(baseTextSize, (150*baseTextSize)/maxTextLength)
   var textHeight = 4;
   var textRadius = bumperPlate?122:130;
+  var sideTextOffset = bumperPlate?115:110
   var textSpan = bumperPlate?110:85;
   
-  if(param.LeftText.trim() !== ''){textObjects.push(linear_extrude({height: textHeight}, straightText(trimText(param.LeftText, 5,3), textSize = textSize, font = font)).setColor(textColor).translate([-110,0,0]));}
-  if(param.RightText.trim() !== ''){textObjects.push(linear_extrude({height: textHeight}, straightText(trimText(param.RightText, 5,3), textSize = textSize, font = font)).rotateZ(param.invertText?180:0).setColor(textColor).translate([110,0,0]))}
+  if(param.LeftText.trim() !== ''){textObjects.push(linear_extrude({height: textHeight}, straightText(trimText(param.LeftText, 5,3), textSize = textSize, font = font)).setColor(textColor).translate([-sideTextOffset,0,0]));}
+  if(param.RightText.trim() !== ''){textObjects.push(linear_extrude({height: textHeight}, straightText(trimText(param.RightText, 5,3), textSize = textSize, font = font)).rotateZ(param.invertText?180:0).setColor(textColor).translate([sideTextOffset,0,0]))}
   if(param.TopText.trim() !== ''){textObjects.push(linear_extrude({height: textHeight}, revolveMultilineText(topText, textSpan, textRadius, true, textSize = textSize, font = font)).setColor(textColor));}
   if(param.BottomText.trim() !== ''){textObjects.push(linear_extrude({height: textHeight}, revolveMultilineText(bottomText, textSpan, textRadius, param.invertText, textSize = textSize, font = font)).rotateZ(180).setColor(textColor));}
   if(ClockMode) {
@@ -59,11 +60,11 @@ weightPlateBase = function weightPlateBase (param, ClockMode, bumperPlate = fals
     allObjects.push(baseSTL.rotateZ(45).translate([0,-254,-1]).setColor(plateColor));
   
     var items = []
-    textObjects.forEach((item, index) => {textObjects[index] = item.scale(size/14.7)})
     if(bumperPlate) {
       var allText = union(textObjects).scale([1,1,2]).setColor(accentColor);
       items.push(union(allObjects).subtract(cutObjects).subtract(allText).scale(size/14.7).subtract(unscaledCutObjects));
     } else {
+      textObjects.forEach((item, index) => {textObjects[index] = item.scale(size/14.7)})
       items.push(union(allObjects).subtract(cutObjects).scale(size/14.7).subtract(unscaledCutObjects));
       items = items.concat(textObjects);
     }
