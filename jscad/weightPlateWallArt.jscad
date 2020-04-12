@@ -22,7 +22,7 @@ function getParameterDefinitions () {
     captions: ['Gray', 'Black'],
     initial: ''
     },
-    {name: 'bananaInternal', checked: false, type: 'checkbox', caption: 'Banana for Scale',  internal: true},
+    {name: 'bananaInternal', checked: false, type: 'checkbox', caption: 'Banana for Scale',  internal: true},   
     //{name: 'color', type: 'color', initial: '#0F0F0F', caption: 'Color?'}
   ];
 }

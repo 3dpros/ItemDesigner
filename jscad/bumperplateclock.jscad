@@ -10,8 +10,8 @@ function getParameterDefinitions () {
     {name: 'color',
     type: 'choice',
     caption: 'Color',
-    values: ['gray', 'black'],
-    captions: ['Gray', 'Black'],
+    values: ['red', 'blue', 'green'],
+    captions: ['Red', 'Blue', 'Green'],
     initial: ''
     },
     {name: 'sizeOpt',
@@ -22,6 +22,8 @@ function getParameterDefinitions () {
     initial: '15',
     internal: true
   },
+  {name: 'invertText', checked: true, type: 'checkbox', caption: 'Invert Bottom/Right Text', internalDefault: true},
+
     //{name: 'hidePlate', checked: false, type: 'checkbox', caption: 'Hide Plate'},
     {name: 'displayOptions', type: 'group', caption: 'Render Options'},   
     {name: 'showKitInternal', checked: true, type: 'checkbox', caption: 'Show Clock Hands', internalDefault: false},
@@ -36,9 +38,10 @@ function main (param) {
   include("/../clockKit.jscad");
   include("/../base.jscad");
 
-  var item = weightPlateBase(param, ClockMode = true, bumperPlate = true);
+  var items = []
+  items = weightPlateBase(param, ClockMode = true, bumperPlate = true);
   if(param.showKitInternal) {
-    item = item.union(clockAssm(param.sizeOpt, param.color == 'black').translate([-102,-47,-81])); }
-  item = allItemBase(param, item);
-  return item;
+    items.push(clockAssm(param.sizeOpt, param.color == 'black', showSecondHand = false).translate([-102,-47,-81])); }
+//  item = allItemBase(param, item);
+  return items;
 }

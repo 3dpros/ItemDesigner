@@ -117,7 +117,9 @@ revolveMultilineText =  function revolveMultilineText(text, textAngle = 90, radi
     'black': '#1c1c1c',
     'blue': '#242da6',
     'red': '#c72222',
-    'green': '#24a642'
+    'green': '#24a642',
+    'white': '#ffffff'
+
   };
   colorName = colorName.toLowerCase()
   if(colorValues.hasOwnProperty(colorName)) {  
