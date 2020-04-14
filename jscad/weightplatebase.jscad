@@ -6,11 +6,12 @@ weightPlateBase = function weightPlateBase (param, ClockMode, bumperPlate = fals
 
   include("/../weightPlate.jscad");
   include("/../base.jscad");
-  
-  if(param.invertText === null)
-  {
-    param.invertText = false;
+  invertText = false;
+
+  if(param.invertText != null) {
+    invertText = param.invertText;
   }
+
     var size = param.sizeOpt;
     var cutObjects = []; // our stack of objects
     var unscaledCutObjects = []; // our stack of objects
@@ -27,7 +28,7 @@ weightPlateBase = function weightPlateBase (param, ClockMode, bumperPlate = fals
   var font = bumperPlate?'arial':'gothic'
   
   
-    var maxTextLength = max(getTotalCharLen(topText, baseTextSize,  font = font, [0,0.2]), getTotalCharLen(bottomText, baseTextSize, font = font, param.invertText?[0,0.2]:[0.2,0]))
+    var maxTextLength = max(getTotalCharLen(topText, baseTextSize,  font = font, [0,0.2]), getTotalCharLen(bottomText, baseTextSize, font = font, invertText?[0,0.2]:[0.2,0]))
     var textSize = min(baseTextSize, (150*baseTextSize)/maxTextLength)
   var textHeight = 4;
   var textRadius = bumperPlate?122:130;
@@ -35,9 +36,9 @@ weightPlateBase = function weightPlateBase (param, ClockMode, bumperPlate = fals
   var textSpan = bumperPlate?110:85;
   
   if(param.LeftText.trim() !== ''){textObjects.push(linear_extrude({height: textHeight}, straightText(trimText(param.LeftText, 5,3), textSize = textSize, font = font)).setColor(textColor).translate([-sideTextOffset,0,0]));}
-  if(param.RightText.trim() !== ''){textObjects.push(linear_extrude({height: textHeight}, straightText(trimText(param.RightText, 5,3), textSize = textSize, font = font)).rotateZ(param.invertText?180:0).setColor(textColor).translate([sideTextOffset,0,0]))}
+  if(param.RightText.trim() !== ''){textObjects.push(linear_extrude({height: textHeight}, straightText(trimText(param.RightText, 5,3), textSize = textSize, font = font)).rotateZ(invertText?180:0).setColor(textColor).translate([sideTextOffset,0,0]))}
   if(param.TopText.trim() !== ''){textObjects.push(linear_extrude({height: textHeight}, revolveMultilineText(topText, textSpan, textRadius, true, textSize = textSize, font = font)).setColor(textColor));}
-  if(param.BottomText.trim() !== ''){textObjects.push(linear_extrude({height: textHeight}, revolveMultilineText(bottomText, textSpan, textRadius, param.invertText, textSize = textSize, font = font)).rotateZ(180).setColor(textColor));}
+  if(param.BottomText.trim() !== ''){textObjects.push(linear_extrude({height: textHeight}, revolveMultilineText(bottomText, textSpan, textRadius, invertText, textSize = textSize, font = font)).rotateZ(180).setColor(textColor));}
   if(ClockMode) {
     cutObjects.push(clockTicks().scale(bumperPlate?.99:1).setColor(accentColor));
     //clock kit hole
