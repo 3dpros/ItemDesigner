@@ -29,11 +29,11 @@ weightPlateBase = function weightPlateBase (param, ClockMode, bumperPlate = fals
   
   
     var maxTextLength = max(getTotalCharLen(topText, baseTextSize,  font = font, [0,0.2]), getTotalCharLen(bottomText, baseTextSize, font = font, invertText?[0,0.2]:[0.2,0]))
-    var textSize = min(baseTextSize, (150*baseTextSize)/maxTextLength)
+    var textSize = min(baseTextSize, (145*baseTextSize)/maxTextLength)
   var textHeight = 4;
   var textRadius = bumperPlate?122:130;
   var sideTextOffset = bumperPlate?115:110
-  var textSpan = bumperPlate?110:85;
+  var textSpan = bumperPlate?110:75;
   
   if(param.LeftText.trim() !== ''){textObjects.push(linear_extrude({height: textHeight}, straightText(trimText(param.LeftText, 5,3), textSize = textSize, font = font)).setColor(textColor).translate([-sideTextOffset,0,0]));}
   if(param.RightText.trim() !== ''){textObjects.push(linear_extrude({height: textHeight}, straightText(trimText(param.RightText, 5,3), textSize = textSize, font = font)).rotateZ(invertText?180:0).setColor(textColor).translate([sideTextOffset,0,0]))}
