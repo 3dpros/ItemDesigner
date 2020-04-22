@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<!--
+== OpenJSCAD.org, Copyright (c) 2016-2017, Licensed under MIT License ==
+   in conjunction with other libraries by various authors (see the individual files)
+-->
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width">
+  <title>Item Designer</title>
+  <link rel="stylesheet" href="../min.css" type="text/css">
+  <link rel='icon' href='../imgs/favicon_logo_2.0.png' type='image/x-icon'/>
+
+</head>
+
+
+<body>
+
+  <script src="../dist/min.js"></script>
+
+<div id="mainUI">
+<!-- setup display of the errors as required by OpenJSCAD.js -->
+  <div class="jscad-container">
+    <div id="statusdiv"></div>
+
+
+<!-- setup display of the viewer, i.e. canvas -->
+    <div oncontextmenu="return false;" class="column" div id="viewerContext" design-url="../jscad/BlockingBoard.jscad" internalViewer=false></div>    
+<!-- setup display of the status, as required by OpenJSCAD.js -->
+    <div class="column" id="tail">
+        <div id="parametersdiv"></div> 
+    </div>
+</div>
+<div id="urlDiv">
+  <div id="internal" hidden = true>  <!-- only shown for internal viewer -->
+    <p><a href="" id="urlLink">Custom Link</a></p>  
+    </div>
+    <div id='postUI' hidden = true>
+    <p hidden = true>
+
+                <p><div readonly id="designID" hidden = true></div></p>
+                <p><div  id="copyDesignID"hidden = true></div></p>
+                <img src="../imgs/logo_2.0.png" width="48" class= "center">
+
+    </p>
+    </div>
+
+
+</div>
+</div>
+</body>
+<script>    
+  // IE is not supported
+  if (navigator.userAgent.indexOf('Trident') > 0) {
+    document.body.innerHTML = "    <div id='postUI'>The Item Designer is not supported by the Internet Explorer browser. Please use one of these browsers:<ul><li>Microsoft Edge </li><li><a href = \"https://www.google.com/chrome/\">Google Chrome</a></li><li><a href = \"https://www.mozilla.org/en-US/firefox/new/\">Mozilla Firefox</a></li></ul></div>";
+  }
+  </script>
+</html>
