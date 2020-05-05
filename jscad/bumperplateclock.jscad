@@ -22,7 +22,7 @@ function getParameterDefinitions () {
     initial: '15',
     internal: true
   },
-  {name: 'invertText', checked: true, type: 'checkbox', caption: 'Invert Bottom/Right Text', internalDefault: true},
+  {name: 'invertText', checked: true, type: 'checkbox', caption: 'Invert Bottom/Right Text', initial: true},
 
     //{name: 'hidePlate', checked: false, type: 'checkbox', caption: 'Hide Plate'},
     {name: 'displayOptions', type: 'group', caption: 'Render Options'},   
