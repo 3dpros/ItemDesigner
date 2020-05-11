@@ -10,8 +10,8 @@ function getParameterDefinitions () {
     {name: 'color',
     type: 'choice',
     caption: 'Color',
-    values: ['red', 'blue', 'green'],
-    captions: ['Red', 'Blue', 'Green'],
+    values: ['red', 'blue', 'green', 'yellow'],
+    captions: ['Red', 'Blue', 'Green', 'Yellow'],
     initial: ''
     },
     {name: 'sizeOpt',
