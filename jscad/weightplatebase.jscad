@@ -2,7 +2,7 @@
 
 
 
-weightPlateBase = function weightPlateBase (param, ClockMode, bumperPlate = false) {
+weightPlateBase = function weightPlateBase (param, ClockMode, bumperPlate = false, dualColor = false) {
 
   include("/../weightPlate.jscad");
   include("/../base.jscad");
@@ -21,7 +21,7 @@ weightPlateBase = function weightPlateBase (param, ClockMode, bumperPlate = fals
   
     var plateColor = colorNameToRGB(param.color)
     var textColor = plateColor.map((a, i) => a + .05);
-    var accentColor = bumperPlate?colorNameToRGB('white'):textColor;
+    var accentColor = dualColor?colorNameToRGB('white'):textColor;
     var baseTextSize = bumperPlate?40:28;
     var topText = trimText(param.TopText)
     var bottomText = trimText(param.BottomText)

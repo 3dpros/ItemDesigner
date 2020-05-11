@@ -25,23 +25,15 @@ function getParameterDefinitions () {
   {name: 'invertText', checked: true, type: 'checkbox', caption: 'Invert Bottom/Right Text', initial: true},
 
     //{name: 'hidePlate', checked: false, type: 'checkbox', caption: 'Hide Plate'},
-    {name: 'displayOptions', type: 'group', caption: 'Render Options'},   
-    {name: 'showKitInternal', checked: true, type: 'checkbox', caption: 'Show Clock Hands', internalDefault: false},
-    {name: 'bananaInternal', checked: false, type: 'checkbox', caption: 'Banana for Scale', internal: true},
     //{name: 'color', type: 'color', initial: '#0F0F0F', caption: 'Color?'}
   ];
 }
 
 
+
 function main (param) {
   include("./weightplatebase.jscad");
-  include("/../clockKit.jscad");
-  include("/../base.jscad");
 
-  var items = []
-  items = weightPlateBase(param, ClockMode = true, bumperPlate = true, dualColor = true);
-  if(param.showKitInternal) {
-    items.push(clockAssm(param.sizeOpt, param.color == 'black', showSecondHand = false).translate([-102,-47,-81])); }
-//  item = allItemBase(param, item);
-  return items;
+  return weightPlateBase(param,  ClockMode = false, bumperPlate = true);
+
 }
