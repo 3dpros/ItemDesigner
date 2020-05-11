@@ -70,7 +70,7 @@ revolveMultilineText =  function revolveMultilineText(text, textAngle = 90, radi
       var invertVal = invert?1:-1
       var totalCharLen = getTotalCharLen(text, textSize, font);
       var word = [];
-      var iRadius = radius-invertVal*10 + (28-textSize)/2;
+      var iRadius = radius-invertVal*(textSize/3)+ (28-textSize)/2;
     
     
       spanAngle = min(textAngle, getTextWidth(text, textSize, font) /2 * 130/radius);
