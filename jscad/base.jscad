@@ -111,15 +111,22 @@ revolveMultilineText =  function revolveMultilineText(text, textAngle = 90, radi
   
   }
 
+  adjustColor = function adjustColor(color, factor)
+  {
+     return [color[0]+factor,color[1]+factor,color[2]+factor]
+  }
+
   colorNameToRGB = function colorNameToRGB(colorName) {
   colorValues = {
     'gray': '#ebebeb',
     'black': '#1c1c1c',
+    'white': '#ffffff',
     'blue': '#242da6',
     'red': '#c72222',
     'yellow': '#ffc31f',
     'green': '#24a642'
   };
+
   colorName = colorName.toLowerCase()
   if(colorValues.hasOwnProperty(colorName)) {  
     return html2rgb(colorValues[colorName])

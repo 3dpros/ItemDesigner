@@ -1,5 +1,5 @@
 function getParameterDefinitions () {
-  var defaultVariantType = '1'; 
+  var defaultVariantType = '0'; 
   return [
     {name: 'Configuration', type: 'group', caption: 'Design Options'},
     {name: 'Text', initial: 'Line 1\nLine 2\nLine 3', type: 'textbox', caption: 'Text', height: '5'},
@@ -39,13 +39,7 @@ function getParameterDefinitions () {
 
     {name: 'bananaInternal', checked: false, type: 'checkbox', caption: 'Banana for Scale', internal: true},
 
-    {name: 'renderMode',
-    type: 'choice',
-    caption: 'Render Mode',
-    values: ['all', 'base', 'text'],
-    captions: ['Show All', 'Base Only', 'Text Only'],
-    initial: 'all', internal: true
-  },
+    
     //{name: 'color', type: 'color', initial: '#0F0F0F', caption: 'Color?'}
     
   ];
@@ -53,7 +47,7 @@ function getParameterDefinitions () {
 
 function main (param) {
   include("/../kettlebellModelBase.jscad");
-  return kettlebellModel(param);
+  return kettlebellModel(param, dualColor = false);
 }
 
 
