@@ -9,6 +9,8 @@ function getParameterDefinitions () {
     values: ['black', 'blue', 'green', 'red'],
     captions: ['Black', 'Blue', 'Green', 'Red']
     },
+    {name: 'differentBackText', checked: false, type: 'checkbox', caption: 'Different Text On Back'},
+    {name: 'BackText', initial: '', type: 'textbox', caption: 'Text', height: '5'},
     {name: 'style',
     type: 'choice',
     caption: 'Text Style',
@@ -36,6 +38,7 @@ function getParameterDefinitions () {
     },
 
     {name: 'bananaInternal', checked: false, type: 'checkbox', caption: 'Banana for Scale', internal: true},
+
     {name: 'renderMode',
     type: 'choice',
     caption: 'Render Mode',

@@ -31,10 +31,13 @@ if(backtext != '')
   var backTextVector = straightText(backtext, textSize, param.style)
   textItems.push(linear_extrude({height: 2}, backTextVector).translate([0,0,36]).rotateY(180).setColor(accentColor));
 }
-  var renderMode = 'base'
-  if(param.renderMode != null) {
+  var renderMode = 'all'
+  if (!dualColor) {
+    renderMode = 'base'
+  } else if(param.renderMode != null) {
     renderMode == param.renderMode
   } 
+
   if(renderMode == 'all') {
     objects.push(item);
     objects = objects.concat(textItems)
