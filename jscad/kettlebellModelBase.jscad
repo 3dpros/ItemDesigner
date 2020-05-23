@@ -34,8 +34,9 @@ if(backtext != '')
   var renderMode = 'all'
   if (!dualColor) {
     renderMode = 'base'
-  } else if(param.renderMode != null) {
-    renderMode == param.renderMode
+  } 
+  if(param.renderMode != null) {
+    renderMode = param.renderMode
   } 
 
   if(renderMode == 'all') {
