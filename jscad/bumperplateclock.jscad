@@ -5,8 +5,8 @@ function getParameterDefinitions () {
     {name: 'Configuration', type: 'group', caption: 'Design Options'},
     {name: 'TopText', initial: 'TOP', type: 'textbox', caption: 'Top Text', maxLength: 14},
     {name: 'BottomText', initial: 'BOTTOM', type: 'textbox', caption: 'Bottom Text', maxLength: 14},
-    {name: 'LeftText', initial: '55', type: 'textbox', caption: 'Left Text'},
-    {name: 'RightText', initial: '55', type: 'textbox', caption: 'Right Text'},
+    {name: 'LeftText', initial: 'EST.', type: 'textbox', caption: 'Left Text'},
+    {name: 'RightText', initial: '2010', type: 'textbox', caption: 'Right Text'},
     {name: 'color',
     type: 'choice',
     caption: 'Color',
@@ -22,7 +22,7 @@ function getParameterDefinitions () {
     initial: '15',
     internal: true
   },
-  {name: 'invertText', checked: true, type: 'checkbox', caption: 'Invert Bottom/Right Text', initial: true},
+  {name: 'invertText', checked: false, type: 'checkbox', caption: 'Invert Bottom/Right Text', internal: true},
 
     //{name: 'hidePlate', checked: false, type: 'checkbox', caption: 'Hide Plate'},
     {name: 'displayOptions', type: 'group', caption: 'Render Options'},   
@@ -39,7 +39,7 @@ function main (param) {
   include("/../base.jscad");
 
   var items = []
-  items = weightPlateBase(param, ClockMode = true, bumperPlate = true, dualColor = true);
+  items = weightPlateBase(param, ClockMode = true, bumperPlate = true, dualColor = false);
   if(param.showKitInternal) {
     items.push(clockAssm(param.sizeOpt, param.color == 'black', showSecondHand = false).translate([-102,-47,-81])); }
 //  item = allItemBase(param, item);
