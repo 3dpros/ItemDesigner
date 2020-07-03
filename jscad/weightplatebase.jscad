@@ -20,7 +20,7 @@ weightPlateBase = function weightPlateBase (param, ClockMode, bumperPlate = fals
     var p = []; // our stack of extruded line segments
   
     var plateColor = colorNameToRGB(param.color)
-    var accentColor = dualColor?colorNameToRGB('white'):plateColor.map((a, i) => a + .05);
+    var accentColor = dualColor?colorNameToRGB('white'):plateColor.map((a, i) => a - .1);
     var baseTextSize = bumperPlate?40:28;
     var topText = trimText(param.TopText)
     var bottomText = trimText(param.BottomText)
@@ -28,11 +28,11 @@ weightPlateBase = function weightPlateBase (param, ClockMode, bumperPlate = fals
   var sizeScalingFactor = size/14.7;
   
     var maxTextLength = max(getTotalCharLen(topText, baseTextSize,  font = font, [0,0.2]), getTotalCharLen(bottomText, baseTextSize, font = font, [0,0.2]))
-    var textSize = min(baseTextSize, (155*baseTextSize)/maxTextLength)
+    var textSize = min(baseTextSize, (175*baseTextSize)/maxTextLength)
   var textHeight = 4;
   var textRadius = bumperPlate?122:130;
   var sideTextOffset = bumperPlate?112:110
-  var textSpan = bumperPlate?110:75;
+  var textSpan = bumperPlate?130:75;
   var sideTextSize = textSize
  //for bumper plates, scale the side text a bit smaller if needed since there is less room
   if(bumperPlate)
@@ -50,10 +50,10 @@ weightPlateBase = function weightPlateBase (param, ClockMode, bumperPlate = fals
     //clock kit hole
     unscaledCutObjects.push(cylinder({r: 4.5, h: 30, center: true}).setColor(accentColor)) 
     //clock kit gap on back
-    if(!bumperPlate && size > 15)
-    {
-      unscaledCutObjects.push(cube({size: [63,63,5], center: true}).setColor(accentColor))
-    }
+    //if(!bumperPlate && size > 15)
+    //{
+    //  unscaledCutObjects.push(cube({size: [63,63,5], center: true}).setColor(accentColor))
+    //}
 
   }
   else {
