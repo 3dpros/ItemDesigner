@@ -20,7 +20,7 @@ weightPlateBase = function weightPlateBase (param, ClockMode, bumperPlate = fals
     var p = []; // our stack of extruded line segments
   
     var plateColor = colorNameToRGB(param.color)
-    var accentColor = dualColor?colorNameToRGB('white'):plateColor.map((a, i) => a - .1);
+    var accentColor = dualColor?colorNameToRGB('white'):plateColor.map((a, i) => a - .05);
     var baseTextSize = bumperPlate?40:28;
     var topText = trimText(param.TopText)
     var bottomText = trimText(param.BottomText)
