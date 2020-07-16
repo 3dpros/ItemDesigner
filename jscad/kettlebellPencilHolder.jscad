@@ -9,8 +9,7 @@ function getParameterDefinitions () {
     values: ['black', 'blue', 'green', 'red'],
     captions: ['Black', 'Blue', 'Green', 'Red']
     },
-    {name: 'differentBackText', checked: false, type: 'checkbox', caption: 'Different Text On Back'},
-    {name: 'BackText', initial: '', type: 'textbox', caption: 'Text', height: '5'},
+    {name: 'BackText', initial: '', type: 'textbox', caption: 'Back Text (if different)', height: '5'},
     {name: 'style',
     type: 'choice',
     caption: 'Text Style',
@@ -18,7 +17,6 @@ function getParameterDefinitions () {
     captions: ['Sharp', 'Rounded'],
     initial: 'gothic'
     },
-
     //{name: 'hidePlate', checked: false, type: 'checkbox', caption: 'Hide Plate'},
    
     {name: 'sizeOpt',

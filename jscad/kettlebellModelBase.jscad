@@ -8,7 +8,7 @@ kettlebellModel = function kettlebellModel (param, dualColor = true) {
 
  var text = trimText(param.Text, maxCharsPerLine = 16, maxLines = 4)
  var backtext = text
- if(param.differentBackText) {
+ if(param.BackText != '') {
  var backtext = trimText(param.BackText, maxCharsPerLine = 16, maxLines = 4)
  }
  
