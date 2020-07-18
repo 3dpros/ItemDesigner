@@ -21,7 +21,7 @@ weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, du
   
     var plateColor = colorNameToRGB(param.color)
     var accentColor = dualColor?colorNameToRGB('white'):plateColor.map((a, i) => a - .03);
-    var textColor = param.whiteLetters?colorNameToRGB('white'):accentColor;
+    var textColor = param.whiteLettersInternal?colorNameToRGB('white'):accentColor;
     var baseTextSize = bumperPlate?40:34;
     var topText = trimText(param.TopText)
     var bottomText = trimText(param.BottomText)

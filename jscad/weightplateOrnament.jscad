@@ -31,9 +31,8 @@ function main (param) {
   param.sizeOpt = 2.75*5;
   if(param.color == 'dual')
   {
-    param['whiteLetters'] = true;
+    param['whiteLettersInternal'] = true;
     param.color = 'Black';
-    //param.whiteLetters = true;
   }
   items = weightPlateBase(param, Mode = "ornament");
 

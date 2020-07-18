@@ -24,7 +24,7 @@ function getParameterDefinitions () {
   },
     //{name: 'hidePlate', checked: false, type: 'checkbox', caption: 'Hide Plate'},
     {name: 'displayOptions', type: 'group', caption: 'Render Options'},   
-    {name: 'paintedLetters', checked: true, type: 'checkbox', caption: 'Preview Painted Letters', Default: false},
+    {name: 'whiteLettersInternal', checked: false, type: 'checkbox', caption: 'Preview Painted Letters', internalDefault: false},
 
     {name: 'showKitInternal', checked: true, type: 'checkbox', caption: 'Show Clock Hands', internalDefault: false},
     {name: 'bananaInternal', checked: false, type: 'checkbox', caption: 'Banana for Scale', internal: true},
