@@ -1,3 +1,9 @@
 node_modules
 _site
 .jekyll-cache
+.sass-cache/46096bd86efe7b77196585b8afc57db6c26d1c18/rouge-github.scssc
+.sass-cache/46096bd86efe7b77196585b8afc57db6c26d1c18/jekyll-theme-slate.scssc
+Gemfile
+Gemfile.lock
+Gemfile
+Gemfile

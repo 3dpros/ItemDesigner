@@ -39,7 +39,7 @@ function main (param) {
   include("/../base.jscad");
 
   var items = []
-  items = weightPlateBase(param, ClockMode = true, bumperPlate = true, dualColor = false);
+  items = weightPlateBase(param, Mode = "clock", bumperPlate = true, dualColor = false);
   if(param.showKitInternal) {
     items.push(clockAssm(param.sizeOpt, param.color == 'black', showSecondHand = false).translate([-102,-47,-81])); }
 //  item = allItemBase(param, item);

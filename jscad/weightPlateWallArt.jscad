@@ -22,6 +22,7 @@ function getParameterDefinitions () {
     captions: ['Gray', 'Black'],
     initial: ''
     },
+    {name: 'whiteLetters', checked: true, type: 'checkbox', caption: 'Preview Painted Letters', Default: false},
     {name: 'bananaInternal', checked: false, type: 'checkbox', caption: 'Banana for Scale',  internal: true},   
     //{name: 'color', type: 'color', initial: '#0F0F0F', caption: 'Color?'}
   ];
@@ -32,6 +33,6 @@ function getParameterDefinitions () {
 function main (param) {
   include("./weightplatebase.jscad");
 
-  return weightPlateBase(param,  ClockMode = false);
+  return weightPlateBase(param,  Mode = "wallart");
 
 }

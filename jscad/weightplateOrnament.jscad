@@ -10,23 +10,12 @@ function getParameterDefinitions () {
     {name: 'color',
     type: 'choice',
     caption: 'Color',
-    values: ['gray', 'black'],
-    captions: ['Gray', 'Black'],
+    values: ['gray', 'black', 'red', 'gold', 'dual'],
+    captions: ['Gray', 'Black', 'Red', 'Gold', 'Black w/ Gray Text'],
     initial: ''
-    },
-    {name: 'sizeOpt',
-    type: 'choice',
-    caption: 'Clock Diameter',
-    values: ['11', '15', '18'],
-    captions: ['11"', '15"', '18"'],
-    initial: '15',
-    internal: true
-  },
+    },    
     //{name: 'hidePlate', checked: false, type: 'checkbox', caption: 'Hide Plate'},
     {name: 'displayOptions', type: 'group', caption: 'Render Options'},   
-    {name: 'paintedLetters', checked: true, type: 'checkbox', caption: 'Preview Painted Letters', Default: false},
-
-    {name: 'showKitInternal', checked: true, type: 'checkbox', caption: 'Show Clock Hands', internalDefault: false},
     {name: 'bananaInternal', checked: false, type: 'checkbox', caption: 'Banana for Scale', internal: true},
     //{name: 'color', type: 'color', initial: '#0F0F0F', caption: 'Color?'}
   ];
@@ -39,9 +28,15 @@ function main (param) {
   include("/../base.jscad");
 
   var items = [];
-  items = weightPlateBase(param, Mode = "clock");
-  if(param.showKitInternal) {
-    items.push(clockAssm(param.sizeOpt, param.color == 'black').translate([-102,-47,-81])); }
-//  item = allItemBase(param, item);
+  param.sizeOpt = 2.75*5;
+  if(param.color == 'dual')
+  {
+    param['whiteLetters'] = true;
+    param.color = 'Black';
+    //param.whiteLetters = true;
+  }
+  items = weightPlateBase(param, Mode = "ornament");
+
+ 
   return items;
 }

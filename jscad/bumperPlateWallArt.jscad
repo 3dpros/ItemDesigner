@@ -34,6 +34,6 @@ function getParameterDefinitions () {
 function main (param) {
   include("./weightplatebase.jscad");
 
-  return weightPlateBase(param,  ClockMode = false, bumperPlate = true);
+  return weightPlateBase(param,  Mode = "wallart", bumperPlate = true);
 
 }

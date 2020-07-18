@@ -124,6 +124,7 @@ revolveMultilineText =  function revolveMultilineText(text, textAngle = 90, radi
     'blue': '#242da6',
     'red': '#c72222',
     'yellow': '#ffc31f',
+    'gold': '#f0db62',
     'green': '#24a642'
   };
 
