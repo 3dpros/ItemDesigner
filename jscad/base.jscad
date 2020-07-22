@@ -15,7 +15,7 @@ logMsg = function log(msg) {
       debugControl.innerHTML += '<br>' + msg;
     }
 
-trimText = function trimText(text, maxCharsPerLine = 14, maxLines = 2) {
+trimText = function trimText(text, maxCharsPerLine = 18, maxLines = 2) {
       var trimmedArray = [];
       var textArray = text.split('\n').slice(0,maxLines)
       textArray.forEach((word) => {
