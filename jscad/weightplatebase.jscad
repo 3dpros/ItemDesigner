@@ -49,8 +49,9 @@ weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, du
   if(Mode == "clock") {
     cutObjects.push(clockTicks().scale(bumperPlate?.99:1).setColor(accentColor));
     //clock kit hole
-    unscaledCutObjects.push(cylinder({r: 4.5, h: 30, center: true}).setColor(accentColor)) 
-    
+    unscaledCutObjects.push(cylinder({r: 5, h: 30, center: true}).setColor(accentColor)) 
+    allObjects.push(cylinder({r: 20, h: 2, center: true}).setColor(plateColor));
+
     //clock kit gap on back
     //if(!bumperPlate && size > 15)
     //{
