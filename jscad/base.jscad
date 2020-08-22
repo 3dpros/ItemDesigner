@@ -79,7 +79,7 @@ revolveMultilineText =  function revolveMultilineText(text, textAngle = 90, radi
       for (var x = 0; x < text.length; x++)
       {
         var c = text.charAt(x);
-            var result = getCharWidth(c, textSize, font)
+            var result = getCharWidth(c, textSize + 1, font)
             var charWidth = result.width;
             var shift = result.shift;
             charLen += charWidth;
