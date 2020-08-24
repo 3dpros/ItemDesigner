@@ -79,12 +79,12 @@ revolveMultilineText =  function revolveMultilineText(text, textAngle = 90, radi
       for (var x = 0; x < text.length; x++)
       {
         var c = text.charAt(x);
-            var result = getCharWidth(c, textSize + 1, font)
+            var result = getCharWidth(c, textSize, font)
             var charWidth = result.width;
             var shift = result.shift;
             charLen += charWidth;
           if(c.trim() !== ''){
-            word.push(getText(c,textSize, font).translate([-shift,invertVal*iRadius,0]).rotateZ(-invertVal*( (charLen- charWidth/2)/totalCharLen*spanAngle) +invertVal*(spanAngle/2)));
+            word.push(getText(c,textSize-3, font).translate([-shift,invertVal*iRadius,0]).rotateZ(-invertVal*( (charLen- charWidth/2)/totalCharLen*spanAngle) +invertVal*(spanAngle/2)));
           }
         }
       if(invertVal>0){
