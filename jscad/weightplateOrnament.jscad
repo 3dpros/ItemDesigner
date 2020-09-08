@@ -10,7 +10,7 @@ function getParameterDefinitions () {
     {name: 'color',
     type: 'choice',
     caption: 'Color',
-    values: ['gray', 'black', 'red', 'gold', 'dual'],
+    values: ['gray', 'black', 'red', 'gold'],
     captions: ['Gray', 'Black', 'Red', 'Gold'],
     initial: ''
     },    
