@@ -4,7 +4,7 @@ kettlebellModel = function kettlebellModel (param, dualColor = true) {
  
   include("/../kettlebell.jscad");
   include("/../base.jscad");
-  var baseTextSize = 10 * param.textScale / 100
+  var baseTextSize = 10
 
  var text = trimText(param.Text, maxCharsPerLine = 16, maxLines = 4)
  var backtext = text
@@ -13,7 +13,7 @@ kettlebellModel = function kettlebellModel (param, dualColor = true) {
  }
  
   var maxTextLength = getTotalCharLen(text, baseTextSize, param.style);
-  var textSize = min(baseTextSize, baseTextSize*38/maxTextLength);
+  var textSize = min(baseTextSize, baseTextSize*38/maxTextLength) * param.textScale / 100;
   var textItems = []
   var bodyColor = colorNameToRGB(param.color)
   var accentColor = dualColor?colorNameToRGB('white'):adjustColor(bodyColor, -.2);
