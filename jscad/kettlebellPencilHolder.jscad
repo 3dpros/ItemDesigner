@@ -27,6 +27,7 @@ function getParameterDefinitions () {
     initial: '16', //hack until we have camera settings per model
     internal: true
   },
+  {name: 'textScale', type: 'slider', initial: 100, min: 50, max: 150, step: 10, caption: 'Text Scale'},
   {name: 'variant',
   type: 'choice',
   caption: 'Variant',

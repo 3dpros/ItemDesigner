@@ -4,7 +4,7 @@ kettlebellModel = function kettlebellModel (param, dualColor = true) {
  
   include("/../kettlebell.jscad");
   include("/../base.jscad");
-  var baseTextSize = 10
+  var baseTextSize = 10 * param.textScale / 100
 
  var text = trimText(param.Text, maxCharsPerLine = 16, maxLines = 4)
  var backtext = text
