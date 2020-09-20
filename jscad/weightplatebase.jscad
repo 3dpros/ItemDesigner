@@ -71,7 +71,7 @@ weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, du
   
     var baseSTL
     if(Mode == "ornament") {
-      baseSTL = weightPlateOrnament().rotateZ(-45).scale(14.7/2.75*.9987).translate([-265, 2,-22])
+      baseSTL = (bumperPlate?bumperPlateOrnament():weightPlateOrnament()).rotateZ(-45).scale(14.7/2.75*.9987).translate([-265, 2,-22])
     } else {
     baseSTL = (bumperPlate?bumperWeightPlate():weightPlate()).rotateZ(45).translate([0,-254,-1])
     }
