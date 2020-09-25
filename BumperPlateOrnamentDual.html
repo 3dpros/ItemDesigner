@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<!--
+== OpenJSCAD.org, Copyright (c) 2016-2017, Licensed under MIT License ==
+   in conjunction with other libraries by various authors (see the individual files)
+-->
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width">
+  <title>Item Designer</title>
+  <link rel="stylesheet" href="min.css" type="text/css">
+  <link rel='icon' href='imgs/favicon_logo_2.0.png' type='image/x-icon'/>
+
+  <script>
+    window['_fs_debug'] = false;
+    window['_fs_host'] = 'fullstory.com';
+    window['_fs_script'] = 'edge.fullstory.com/s/fs.js';
+    window['_fs_org'] = 'S3S3P';
+    window['_fs_namespace'] = 'FS';
+    (function(m,n,e,t,l,o,g,y){
+        if (e in m) {if(m.console && m.console.log) { m.console.log('FullStory namespace conflict. Please set window["_fs_namespace"].');} return;}
+        g=m[e]=function(a,b,s){g.q?g.q.push([a,b,s]):g._api(a,b,s);};g.q=[];
+        o=n.createElement(t);o.async=1;o.crossOrigin='anonymous';o.src='https://'+_fs_script;
+        y=n.getElementsByTagName(t)[0];y.parentNode.insertBefore(o,y);
+        g.identify=function(i,v,s){g(l,{uid:i},s);if(v)g(l,v,s)};g.setUserVars=function(v,s){g(l,v,s)};g.event=function(i,v,s){g('event',{n:i,p:v},s)};
+        g.shutdown=function(){g("rec",!1)};g.restart=function(){g("rec",!0)};
+        g.log = function(a,b){g("log",[a,b])};
+        g.consent=function(a){g("consent",!arguments.length||a)};
+        g.identifyAccount=function(i,v){o='account';v=v||{};v.acctId=i;g(o,v)};
+        g.clearUserCookie=function(){};
+        g._w={};y='XMLHttpRequest';g._w[y]=m[y];y='fetch';g._w[y]=m[y];
+        if(m[y])m[y]=function(){return g._w[y].apply(this,arguments)};
+    })(window,document,window['_fs_namespace'],'script','user');
+    </script>
+</head>
+
+
+<body>
+
+  <script src="dist/min.js"></script>
+
+<div id="mainUI">
+<!-- setup display of the errors as required by OpenJSCAD.js -->
+  <div class="jscad-container">
+    <div id="statusdiv"></div>
+
+
+<!-- setup display of the viewer, i.e. canvas -->
+    <div oncontextmenu="return false;" class="column" div id="viewerContext" design-url="jscad/bumperplateornamentdual.jscad" internalViewer=false></div>    
+<!-- setup display of the status, as required by OpenJSCAD.js -->
+    <div class="column" id="tail">
+        <div id="parametersdiv"></div> 
+    </div>
+</div>
+<div id="urlDiv">
+  <div id="internal" hidden = true>  <!-- only shown for internal viewer -->
+    <p><a href="" id="urlLink">Custom Link</a></p>  
+    </div>
+    <div id='postUI'>
+    <p><h3 class= "center">- How to order this item -</h3>
+        <ol>             
+            <li>Once your design is just right, copy the unique design ID:
+                <p><textarea readonly id="designID"></textarea></p>
+                <p><button  id="copyDesignID">Copy Design ID</button></p>
+            </li>
+            <hr>
+            <li>Click the link below to return to the Etsy listing:
+                <p><a href="https://www.etsy.com/listing/643513769/weight-plate-custom-ornament-3d-printed">Return to Weight Plate Ornament Listing on Etsy</a></p>
+            </li>
+            <hr>
+            <li>Paste the design ID in the personalization field, and select a size.</li>
+            <hr>
+            <li>Place your order!</li>
+        </ol>
+    </p>
+    </div>
+    <img src="imgs/logo_2.0.png" width="48" class= "center">
+
+
+</div>
+</div>
+</body>
+<script>    
+  // IE is not supported
+  if (navigator.userAgent.indexOf('Trident') > 0) {
+    document.body.innerHTML = "    <div id='postUI'>The Item Designer is not supported by the Internet Explorer browser. Please use one of these browsers:<ul><li>Microsoft Edge </li><li><a href = \"https://www.google.com/chrome/\">Google Chrome</a></li><li><a href = \"https://www.mozilla.org/en-US/firefox/new/\">Mozilla Firefox</a></li></ul></div>";
+  }
+  </script>
+</html>
