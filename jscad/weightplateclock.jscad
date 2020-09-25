@@ -14,6 +14,7 @@ function getParameterDefinitions () {
     captions: ['Gray', 'Black'],
     initial: ''
     },
+    {name: 'textScale', type: 'slider', initial: 100, min: 80, max: 120, step: 5, caption: 'Text Scale'},
     {name: 'sizeOpt',
     type: 'choice',
     caption: 'Clock Diameter',

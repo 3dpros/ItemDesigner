@@ -2,7 +2,7 @@
 
 
 
-weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, dualColor = false) {
+weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, dualColor = false, textAdjustFactor = 1) {
 
   include("/../weightPlate.jscad");
   include("/../base.jscad");
@@ -18,18 +18,20 @@ weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, du
     var allObjects = []; // our stack of objects
     var textObjects = [];
     var p = []; // our stack of extruded line segments
-  
+    var renderMode = (param.renderMode == null)?'all':param.renderMode;
+    var textScale = (param.textScale == null)?100:param.textScale;
+
     var plateColor = colorNameToRGB(param.color)
     var accentColor = dualColor?colorNameToRGB('white'):plateColor.map((a, i) => a - .03);
     var textColor = param.whiteLettersInternal?colorNameToRGB('white'):accentColor;
-    var baseTextSize = bumperPlate?40:34;
+    var baseTextSize = bumperPlate?((Mode == "ornament")?40:40):34;
     var topText = trimText(param.TopText)
     var bottomText = trimText(param.BottomText)
   var font = bumperPlate?'arial':'gothic'
   var sizeScalingFactor = size/14.7;
   
     var maxTextLength = max(getTotalCharLen(topText, baseTextSize,  font = font, [0,0.2]), getTotalCharLen(bottomText, baseTextSize, font = font, [0,0.2]))
-    var textSize = min(baseTextSize, (165*baseTextSize)/maxTextLength)
+    var textSize = min(baseTextSize, (165*baseTextSize)/maxTextLength) * textAdjustFactor * textScale / 100;
   var textHeight = 4;
   var textRadius = bumperPlate?122:134;
   var sideTextOffset = bumperPlate?112:110
@@ -39,7 +41,7 @@ weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, du
   if(bumperPlate)
   {
     var maxSideTextLength = max(getTotalCharLen(param.LeftText, baseTextSize,  font = font), getTotalCharLen(param.RightText, baseTextSize, font = font))
-    sideTextSize = min(baseTextSize, (50*baseTextSize)/maxSideTextLength)
+    sideTextSize = min(baseTextSize, (50*baseTextSize)/maxSideTextLength) * textAdjustFactor
   }
 
   if(param.LeftText.trim() !== ''){textObjects.push(linear_extrude({height: textHeight}, straightText(trimText(param.LeftText.toUpperCase(), 5,3), sideTextSize, font = font)).setColor(textColor).translate([-sideTextOffset,0,0]));}
@@ -59,13 +61,12 @@ weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, du
     //}
 
   }
-  if(Mode != "clock") {
-     //center hole
-    cutObjects.push(cylinder({r: 21, h: 30, center: true}).setColor(accentColor)) 
-  }
+
   
   if(Mode == "wallart"){
-  //hanger hole on back
+    //center hole
+    cutObjects.push(cylinder({r: 21, h: 30, center: true}).setColor(accentColor)) 
+    //hanger hole on back
     cutObjects.push(cylinder({r: 4, h: 12, center: false}).translate([0, 174,-5]).setColor(accentColor))
   }
   
@@ -82,11 +83,21 @@ weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, du
 
     textObjects.forEach((item, index) => {textObjects[index] = item.scale(plateScalingFactor).scale([1,1,bumperPlate?2:1])})
 
-    if(bumperPlate) {
+    if(bumperPlate && !dualColor) {
       items.push(union(allObjects).subtract(cutObjects).scale(plateScalingFactor).subtract(union(textObjects).union(unscaledCutObjects)));
     } else {
+      if(renderMode == 'all') {
       items.push(union(allObjects).subtract(union(cutObjects)).scale(plateScalingFactor).subtract(unscaledCutObjects));
       items = items.concat(textObjects);
+      }
+      if(renderMode == 'text') {
+        items = items.concat(union(textObjects).subtract(union(allObjects)));
+      }
+      if(renderMode == 'base') {
+        items.push(union(allObjects).subtract(union(cutObjects)).scale(plateScalingFactor).subtract(unscaledCutObjects));
+      }
+
+
     }
     return items
   }

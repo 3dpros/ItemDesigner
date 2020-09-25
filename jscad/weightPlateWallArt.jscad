@@ -7,6 +7,7 @@ function getParameterDefinitions () {
     {name: 'BottomText', initial: 'STANDARD', type: 'textbox', caption: 'Bottom Text', maxLength: 14},
     {name: 'LeftText', initial: '45\nLBS', type: 'textbox', caption: 'Left Text'},
     {name: 'RightText', initial: '20.4\nKGS', type: 'textbox', caption: 'Right Text'},
+    {name: 'textScale', type: 'slider', initial: 100, min: 80, max: 120, step: 5, caption: 'Text Scale'},
     {name: 'sizeOpt',
     type: 'choice',
     caption: 'Diameter',
