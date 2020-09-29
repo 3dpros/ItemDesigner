@@ -26,8 +26,10 @@ weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, du
     var accentColor = dualColor?colorNameToRGB('white'):plateColor.map((a, i) => a - .03);
     var textColor = param.whiteLettersInternal?colorNameToRGB('white'):accentColor;
     var baseTextSize = bumperPlate?((Mode == "ornament")?40:40):34;
-    var topText = trimText(param.TopText)
-    var bottomText = trimText(param.BottomText)
+    var topText = trimText(param.TopText.trim()).toUpperCase()
+    var bottomText = trimText(param.BottomText.trim()).toUpperCase()
+    var leftText = trimText(param.LeftText.trim(), 5,3).toUpperCase()
+    var rightText = trimText(param.RightText.trim(), 5,3).toUpperCase()
   var font = bumperPlate?'arial':'gothic'
   var sizeScalingFactor = size/14.7;
   
@@ -45,10 +47,10 @@ weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, du
     sideTextSize = min(baseTextSize, (50*baseTextSize)/maxSideTextLength) * textAdjustFactor
   }
 
-  if(param.LeftText.trim() !== ''){textObjects.push(linear_extrude({height: textHeight}, straightText(trimText(param.LeftText.toUpperCase(), 5,3), sideTextSize, font = font)).setColor(textColor).translate([-sideTextOffset,0,0]));}
-  if(param.RightText.trim() !== ''){textObjects.push(linear_extrude({height: textHeight}, straightText(trimText(param.RightText.toUpperCase(), 5,3), sideTextSize, font = font)).rotateZ(invertText?180:0).setColor(textColor).translate([sideTextOffset,0,0]))}
-  if(param.TopText.trim() !== ''){textObjects.push(linear_extrude({height: textHeight}, revolveMultilineText(trimText(topText.toUpperCase()), textSpan, textRadius, true, textSize = textSize, font = font, kerning/100)).setColor(textColor));}
-  if(param.BottomText.trim() !== ''){textObjects.push(linear_extrude({height: textHeight}, revolveMultilineText(trimText(bottomText.toUpperCase()), textSpan, textRadius, invertText, textSize = textSize, font = font, kerning/100)).rotateZ(180).setColor(textColor));}
+  if(leftText !== ''){textObjects.push(linear_extrude({height: textHeight}, straightText(leftText, sideTextSize, font = font)).setColor(textColor).translate([-sideTextOffset,0,0]));}
+  if(rightText !== ''){textObjects.push(linear_extrude({height: textHeight}, straightText(rightText, sideTextSize, font = font)).rotateZ(invertText?180:0).setColor(textColor).translate([sideTextOffset,0,0]))}
+  if(topText !== ''){textObjects.push(linear_extrude({height: textHeight}, revolveMultilineText(topText, textSpan, textRadius, true, textSize = textSize, font = font, kerning/100)).setColor(textColor));}
+  if(bottomText !== ''){textObjects.push(linear_extrude({height: textHeight}, revolveMultilineText(bottomText, textSpan, textRadius, invertText, textSize = textSize, font = font, kerning/100)).rotateZ(180).setColor(textColor));}
   if(Mode == "clock") {
     cutObjects.push(clockTicks().scale(bumperPlate?.99:1).setColor(accentColor));
     //clock kit hole
