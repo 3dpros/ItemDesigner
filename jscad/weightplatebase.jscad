@@ -20,6 +20,7 @@ weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, du
     var p = []; // our stack of extruded line segments
     var renderMode = (param.renderMode == null)?'all':param.renderMode;
     var textScale = (param.textScale == null)?100:param.textScale;
+    var kerning = (param.kerning == null)?100:param.kerning;
 
     var plateColor = colorNameToRGB(param.color)
     var accentColor = dualColor?colorNameToRGB('white'):plateColor.map((a, i) => a - .03);
@@ -46,8 +47,8 @@ weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, du
 
   if(param.LeftText.trim() !== ''){textObjects.push(linear_extrude({height: textHeight}, straightText(trimText(param.LeftText.toUpperCase(), 5,3), sideTextSize, font = font)).setColor(textColor).translate([-sideTextOffset,0,0]));}
   if(param.RightText.trim() !== ''){textObjects.push(linear_extrude({height: textHeight}, straightText(trimText(param.RightText.toUpperCase(), 5,3), sideTextSize, font = font)).rotateZ(invertText?180:0).setColor(textColor).translate([sideTextOffset,0,0]))}
-  if(param.TopText.trim() !== ''){textObjects.push(linear_extrude({height: textHeight}, revolveMultilineText(topText.toUpperCase(), textSpan, textRadius, true, textSize = textSize, font = font)).setColor(textColor));}
-  if(param.BottomText.trim() !== ''){textObjects.push(linear_extrude({height: textHeight}, revolveMultilineText(bottomText.toUpperCase(), textSpan, textRadius, invertText, textSize = textSize, font = font)).rotateZ(180).setColor(textColor));}
+  if(param.TopText.trim() !== ''){textObjects.push(linear_extrude({height: textHeight}, revolveMultilineText(topText.toUpperCase(), textSpan, textRadius, true, textSize = textSize, font = font, kerning/100)).setColor(textColor));}
+  if(param.BottomText.trim() !== ''){textObjects.push(linear_extrude({height: textHeight}, revolveMultilineText(bottomText.toUpperCase(), textSpan, textRadius, invertText, textSize = textSize, font = font, kerning/100)).rotateZ(180).setColor(textColor));}
   if(Mode == "clock") {
     cutObjects.push(clockTicks().scale(bumperPlate?.99:1).setColor(accentColor));
     //clock kit hole

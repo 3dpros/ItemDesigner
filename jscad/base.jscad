@@ -44,11 +44,11 @@ straightText = function straightText(text, textSize = 20, font = 'gothic')
       return union(allText);
     }     
 
-revolveMultilineText =  function revolveMultilineText(text, textAngle = 90, radius = 180, faceUp = true, textSize = 28, font = 'gothic') {
+revolveMultilineText =  function revolveMultilineText(text, textAngle = 90, radius = 180, faceUp = true, textSize = 28, font = 'gothic', kerning = 1) {
 
       var textArray = text.split('\n')
       if(textArray.length == 1)  {
-        return revolveText(text, textAngle, radius, faceUp, textSize, font);
+        return revolveText(text, textAngle, radius, faceUp, textSize, font, kerning);
       }
       
       if(!faceUp)
@@ -58,14 +58,14 @@ revolveMultilineText =  function revolveMultilineText(text, textAngle = 90, radi
       var allText = [];
       var lineRadius = radius + (textArray.length - 1)/2*textSize -5
       textArray.forEach((word) => {
-        allText.push(revolveText(word, textAngle, lineRadius, faceUp, textSize, font));
+        allText.push(revolveText(word, textAngle, lineRadius, faceUp, textSize, font, kerning));
         lineRadius -= textSize
       });
       return union(allText);
     }
     
     
-    function revolveText(text, textAngle, radius, invert, textSize, font)
+    function revolveText(text, textAngle, radius, invert, textSize, font, kerning = 1)
     {
       var invertVal = invert?1:-1
       var totalCharLen = getTotalCharLen(text, textSize, font);
@@ -73,7 +73,7 @@ revolveMultilineText =  function revolveMultilineText(text, textAngle = 90, radi
       var iRadius = radius-invertVal*(textSize/3)+ (28-textSize)/2;
     
     
-      spanAngle = min(textAngle, getTextWidth(text, textSize, font) /2 * 130/radius);
+      spanAngle = min(textAngle, getTextWidth(text, textSize, font) /2 * 130/radius)*kerning;
       
       var charLen = 0;
       for (var x = 0; x < text.length; x++)

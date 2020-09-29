@@ -859,9 +859,7 @@ Processor.prototype = {
         tr.appendChild(td)
         td = document.createElement('td')
         td.appendChild(control)
-        if ('label' in control) {
-          td.appendChild(control.label)
-        }
+
         tr.appendChild(td)
         //hide the parameter if it is internal only
         if(this.opts.internalViewer == false && paramdef.internal == true) {

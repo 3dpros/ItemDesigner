@@ -597,9 +597,7 @@ Processor.prototype = {
         tr.appendChild(td)
         td = document.createElement('td')
         td.appendChild(control)
-        if ('label' in control) {
-          td.appendChild(control.label)
-        }
+
         tr.appendChild(td)
       }
       this.parameterstable.appendChild(tr)
