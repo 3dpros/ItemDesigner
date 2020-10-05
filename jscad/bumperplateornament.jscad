@@ -14,6 +14,7 @@ function getParameterDefinitions () {
     captions: ['Red', 'Blue', 'Green', 'Yellow'],
     initial: ''
     },    
+    {name: 'invertText', checked: false, type: 'checkbox', caption: 'Invert Right and Bottom'},
     //{name: 'hidePlate', checked: false, type: 'checkbox', caption: 'Hide Plate'},
     {name: 'displayOptions', type: 'group', caption: 'Render Options'},   
     {name: 'bananaInternal', checked: false, type: 'checkbox', caption: 'Banana for Scale', internal: true},
