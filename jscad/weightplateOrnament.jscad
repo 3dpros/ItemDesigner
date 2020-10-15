@@ -15,7 +15,6 @@ function getParameterDefinitions () {
     initial: ''
     },    
     //{name: 'hidePlate', checked: false, type: 'checkbox', caption: 'Hide Plate'},
-    {name: 'displayOptions', type: 'group', caption: 'Render Options'},   
     {name: 'bananaInternal', checked: false, type: 'checkbox', caption: 'Banana for Scale', internal: true},
     {name: 'renderMode',
     type: 'choice',
@@ -24,6 +23,8 @@ function getParameterDefinitions () {
     captions: ['Show All', 'Base Only', 'Text Only'],
     initial: 'all', internal: true
   },
+  {name: 'scaledForViewing', checked: true, type: 'checkbox', caption: 'Scale for Viewing', internalDefault: false, internal: true},
+
     //{name: 'color', type: 'color', initial: '#0F0F0F', caption: 'Color?'}
   ];
 }
@@ -35,7 +36,8 @@ function main (param) {
   include("/../base.jscad");
 
   var items = [];
-  param.sizeOpt = 2.75*5;
+  //small scaling down to make the concentrics work
+  param.sizeOpt = .988*2.75*(param.scaledForViewing?5:1);
   if(param.color == 'dual')
   {
     param['whiteLettersInternal'] = true;

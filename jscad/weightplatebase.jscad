@@ -11,7 +11,6 @@ weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, du
   if(param.invertText != null) {
     invertText = param.invertText;
   }
-
     var size = param.sizeOpt;
     var cutObjects = []; // our stack of objects
     var unscaledCutObjects = []; // our stack of objects
@@ -44,7 +43,7 @@ weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, du
   if(bumperPlate)
   {
     var maxSideTextLength = max(getTotalCharLen(param.LeftText, baseTextSize,  font = font), getTotalCharLen(param.RightText, baseTextSize, font = font))
-    sideTextSize = min(baseTextSize, (50*baseTextSize)/maxSideTextLength) * textAdjustFactor
+    sideTextSize = min(baseTextSize, (58*baseTextSize)/maxSideTextLength) * textAdjustFactor
   }
 
   if(leftText !== ''){textObjects.push(linear_extrude({height: textHeight}, straightText(leftText, sideTextSize, font = font)).setColor(textColor).translate([-sideTextOffset,0,0]));}
@@ -84,7 +83,7 @@ weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, du
     var items = []
     var plateScalingFactor = [sizeScalingFactor, sizeScalingFactor, (Mode == "ornament")?sizeScalingFactor:pow(sizeScalingFactor, .5)];
 
-    textObjects.forEach((item, index) => {textObjects[index] = item.scale(plateScalingFactor).scale([1,1,bumperPlate?2:1])})
+    textObjects.forEach((item, index) => {textObjects[index] = item.scale(plateScalingFactor).scale([1,1,bumperPlate?2.4:1])})
 
     if(bumperPlate && !dualColor) {
       items.push(union(allObjects).subtract(cutObjects).scale(plateScalingFactor).subtract(union(textObjects).union(unscaledCutObjects)));
