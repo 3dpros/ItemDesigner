@@ -1,5 +1,5 @@
 function getParameterDefinitions () {
-  var defaultVariantType = '1'; 
+  var defaultVariantType = '2'; 
   return [
     {name: 'Configuration', type: 'group', caption: 'Design Options'},
     {name: 'Text', initial: 'Line 1\nLine 2\nLine 3', type: 'textbox', caption: 'Text', height: '5'},
