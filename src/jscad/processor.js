@@ -771,15 +771,19 @@ Processor.prototype = {
       if(internalDefault !== null && control !== null) {
         control.value = internalDefault;
       }
-    } else if (prevValue !== undefined) {
-      control.value = prevValue
-    } else if ('initial' in definition) {
-      control.value = definition.initial
-    } else if ('default' in definition) {
-      control.value = definition.default
-    } else {
-      control.value = c_type.initial
     }
+    if (internalDefault == null)
+    {
+      if (prevValue !== undefined) {
+        control.value = prevValue;
+      } else if ('initial' in definition) {
+        control.value = definition.initial;
+      } else if ('default' in definition) {
+        control.value = definition.default;
+      } else {
+        control.value = c_type.initial;
+      }
+  }
     // set generic HTML attributes
     for (var property in definition) {
       if (definition.hasOwnProperty(property)) {
