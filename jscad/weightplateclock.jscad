@@ -11,7 +11,7 @@ function getParameterDefinitions () {
     type: 'choice',
     caption: 'Color',
     values: ['gray', 'black'],
-    captions: ['Gray', 'Black'],
+    captions: ['Silver', 'Black'],
     initial: ''
     },
     {name: 'SizeOptions', type: 'group', caption: 'Text Size Options'},
