@@ -36,7 +36,7 @@ weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, du
     var textSize = min(baseTextSize, (165*baseTextSize)/maxTextLength) * textAdjustFactor * textScale / 100;
   var textHeight = 4;
   var textRadius = bumperPlate?122:134;
-  var sideTextOffset = bumperPlate?112:110
+  var sideTextOffset = bumperPlate?112:107
   var textSpan = bumperPlate?130:80;
   var sideTextSize = textSize
  //for bumper plates, scale the side text a bit smaller if needed since there is less room
@@ -45,6 +45,7 @@ weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, du
     var maxSideTextLength = max(getTotalCharLen(param.LeftText, baseTextSize,  font = font), getTotalCharLen(param.RightText, baseTextSize, font = font))
     sideTextSize = min(baseTextSize, (58*baseTextSize)/maxSideTextLength) * textAdjustFactor
   }
+  var sideTextOffset = bumperPlate?112:(sideTextSize == baseTextSize)?110:106
 
   if(leftText !== ''){textObjects.push(linear_extrude({height: textHeight}, straightText(leftText, sideTextSize, font = font)).setColor(textColor).translate([-sideTextOffset,0,0]));}
   if(rightText !== ''){textObjects.push(linear_extrude({height: textHeight}, straightText(rightText, sideTextSize, font = font)).rotateZ(invertText?180:0).setColor(textColor).translate([sideTextOffset,0,0]))}
@@ -93,7 +94,7 @@ weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, du
       items = items.concat(textObjects);
       }
       if(renderMode == 'text') {
-        items = items.concat(union(textObjects).subtract(union(allObjects)));
+        items = items.concat(union(textObjects).subtract(union(allObjects).scale(plateScalingFactor)));
       }
       if(renderMode == 'base') {
         items.push(union(allObjects).subtract(union(cutObjects)).scale(plateScalingFactor).subtract(unscaledCutObjects));
