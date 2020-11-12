@@ -46858,15 +46858,7 @@ Processor.prototype = {
       }
     };
     this.selectdiv.appendChild(element);
-
-    this.errordiv = this.containerdiv.parentElement.querySelector('div#errordiv');
-    if (!this.errordiv) {
-      this.errordiv = document.createElement('div');
-      this.errordiv.id = 'errordiv';
-      this.containerdiv.parentElement.appendChild(this.errordiv);
-    }
-    this.errorpre = document.createElement('pre');
-    this.errordiv.appendChild(this.errorpre);
+  
 
     this.statusdiv = this.containerdiv.parentElement.querySelector('div#statusdiv');
     if (!this.statusdiv) {
@@ -47062,9 +47054,7 @@ Processor.prototype = {
     this.generateOutputFileButton.style.display = !this.hasOutputFile && this.viewedObject ? 'inline' : 'none';
     this.downloadOutputFileLink.style.display = this.hasOutputFile ? 'inline' : 'none';
     this.parametersdiv.style.display = this.paramControls.length > 0 ? 'inline-block' : 'none'; // was 'block'
-    this.errordiv.style.display = this.hasError ? 'block' : 'none';
-    this.statusdiv.style.display = this.hasError ? 'none' : 'block';
-    this.selectdiv.style.display = this.currentObjects.length > 1 ? 'none' : 'none'; // FIXME once there's a data model
+     this.selectdiv.style.display = this.currentObjects.length > 1 ? 'none' : 'none'; // FIXME once there's a data model
   },
 
   setMemfs: function setMemfs(memFs) {
@@ -47085,7 +47075,6 @@ Processor.prototype = {
 
   setError: function setError(txt) {
     this.hasError = txt != '';
-    this.errorpre.textContent = txt;
     this.enableItems();
   },
 

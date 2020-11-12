@@ -15,11 +15,19 @@ logMsg = function log(msg) {
       debugControl.innerHTML += '<br>' + msg;
     }
 
-trimText = function trimText(text, maxCharsPerLine = 18, maxLines = 2) {
+  validateText = function validateText(text, maxCharsPerLine = 12, maxLines = 2, textLabel = '') {
       var trimmedArray = [];
-      var textArray = text.split('\n').slice(0,maxLines)
+      var textArray = text.split('\n')
+      if (textArray.length > maxLines) {
+        throw("Uh Oh! Your text is too many lines, the maximum is " + maxLines + " Lines. <br><br> Try using a shorter message.")
+    }
+      var textArrayCutoff = textArray.slice(0,maxLines)
       textArray.forEach((word) => {
         trimmedArray.push(word.substr(0,maxCharsPerLine));
+        if (word.length > maxCharsPerLine) {
+          var diff = word.length - maxCharsPerLine
+            throw("Uh Oh! The text <strong>\'" + word + " \'</strong> is " + diff + " character" + (diff==1?"":"s") + " too long, the maximum is " + maxCharsPerLine + ". <br><br> Try using a shorter message or split it into multiple lines.")
+        }
       });
       return trimmedArray.filter(x => x != '').join('\n');
     

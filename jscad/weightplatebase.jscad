@@ -25,10 +25,10 @@ weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, du
     var accentColor = dualColor?colorNameToRGB('white'):plateColor.map((a, i) => a - .03);
     var textColor = param.whiteLettersInternal?colorNameToRGB('white'):accentColor;
     var baseTextSize = bumperPlate?((Mode == "ornament")?40:40):34;
-    var topText = trimText(param.TopText.trim()).toUpperCase()
-    var bottomText = trimText(param.BottomText.trim()).toUpperCase()
-    var leftText = trimText(param.LeftText.trim(), 5,3).toUpperCase()
-    var rightText = trimText(param.RightText.trim(), 5,3).toUpperCase()
+    var topText = validateText(param.TopText.trim()).toUpperCase()
+    var bottomText = validateText(param.BottomText.trim()).toUpperCase()
+    var leftText = validateText(param.LeftText.trim(), 5,3).toUpperCase()
+    var rightText = validateText(param.RightText.trim(), 5,3).toUpperCase()
   var font = bumperPlate?'arial':'gothic'
   var sizeScalingFactor = size/14.7;
   
