@@ -26,6 +26,8 @@ function getParameterDefinitions () {
     captions: ['Show All', 'Base Only', 'Text Only'],
     initial: 'all', internal: true
   },
+  {name: 'scaledForViewing', checked: true, type: 'checkbox', caption: 'Scale for Viewing', internalDefault: false, internal: true},
+
   ];
 }
 
@@ -36,7 +38,7 @@ function main (param) {
   include("/../base.jscad");
 
   var items = [];
-  param.sizeOpt = 2.75*5;
+  param.sizeOpt = 2.75*(param.scaledForViewing?5:1); 
   if(param.color == 'dual')
   {
    // param['whiteLettersInternal'] = true;
