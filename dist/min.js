@@ -46522,7 +46522,7 @@ var generateOutputFileFileSystem = require('../io/generateOutputFileFileSystem')
 
 function generateOutputFile(extension, blob, onDone, context) {
   try {
-    generateOutputFileFileSystem(extension, blob, onDone.bind(context));
+    generateOutputFileFileSystem(extension, blob, onDone.bind(context),document.getElementById('designID').value);
   } catch (e) {
     generateOutputFileBlobUrl(extension, blob, onDone.bind(context));
   }
@@ -46565,7 +46565,7 @@ module.exports = function generateOutputFileBlobUrl(extension, blob, callback) {
 
 var FileSystemApiErrorHandler = require('./utils');
 
-module.exports = function generateOutputFileFileSystem(extension, blob, callback) {
+module.exports = function generateOutputFileFileSystem(extension, blob, callback, fileBaseName) {
   var request = window.requestFileSystem || window.webkitRequestFileSystem;
   if (!request) {
     throw new Error('Your browser does not support the HTML5 FileSystem API. Please try the Chrome browser instead.');
@@ -46573,7 +46573,10 @@ module.exports = function generateOutputFileFileSystem(extension, blob, callback
   // console.log("Trying download via FileSystem API")
   // create a random directory name:
   var dirname = 'OpenJsCadOutput1_' + parseInt(Math.random() * 1000000000, 10) + '_' + extension;
-  var filename = 'output.' + extension; // FIXME this should come from this.filename
+  if(fileBaseName == '') {
+    fileBaseName = 'output'
+  }
+  var filename = fileBaseName + '.' + extension; // FIXME this should come from this.filename
   request(TEMPORARY, 20 * 1024 * 1024, function (fs) {
     fs.root.getDirectory(dirname, { create: true, exclusive: true }, function (dirEntry) {
       dirEntry.getFile(filename, { create: true, exclusive: true }, function (fileEntry) {
