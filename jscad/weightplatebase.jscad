@@ -20,21 +20,23 @@ weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, du
     var renderMode = (param.renderMode == null)?'all':param.renderMode;
     var textScale = (param.textScale == null)?100:param.textScale;
     var kerning = (param.kerning == null)?100:param.kerning;
+    var maxSideChars = ((bumperPlate && Mode == "ornament")?4:5)
+    var maxTopBottomChars = bumperPlate?10:15
 
     var plateColor = colorNameToRGB(param.color)
     var accentColor = dualColor?colorNameToRGB('white'):plateColor.map((a, i) => a - .03);
     var textColor = param.whiteLettersInternal?colorNameToRGB('white'):accentColor;
     var baseTextSize = bumperPlate?((Mode == "ornament")?40:40):34;
-    var topText = validateText(param.TopText.trim()).toUpperCase()
-    var bottomText = validateText(param.BottomText.trim()).toUpperCase()
-    var leftText = validateText(param.LeftText.trim(), 5,3).toUpperCase()
-    var rightText = validateText(param.RightText.trim(), 5,3).toUpperCase()
+    var topText = validateText(param.TopText.trim(), maxTopBottomChars).toUpperCase()
+    var bottomText = validateText(param.BottomText.trim(), maxTopBottomChars).toUpperCase()
+    var leftText = validateText(param.LeftText.trim(), maxSideChars,3).toUpperCase()
+    var rightText = validateText(param.RightText.trim(), maxSideChars,3).toUpperCase()
   var font = bumperPlate?'arial':'gothic'
   var sizeScalingFactor = size/14.7;
   
     var maxTextLength = max(getTotalCharLen(topText, baseTextSize,  font = font, [0,0.2]), getTotalCharLen(bottomText, baseTextSize, font = font, [0,0.2]))
     var textSize = min(baseTextSize, (165*baseTextSize)/maxTextLength) * textAdjustFactor * textScale / 100;
-  var textHeight = 4;
+  var textHeight = (Mode == "ornament")?(bumperPlate?5:7):4;
   var textRadius = bumperPlate?122:134;
   var sideTextOffset = bumperPlate?112:107
   var textSpan = bumperPlate?130:80;
