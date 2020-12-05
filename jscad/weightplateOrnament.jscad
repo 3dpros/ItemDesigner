@@ -10,8 +10,8 @@ function getParameterDefinitions () {
     {name: 'color',
     type: 'choice',
     caption: 'Color',
-    values: ['gray', 'black', 'red', 'gold', 'dual'],
-    captions: ['Silver', 'Black', 'Red', 'Gold', 'Black w/ Silver Text'],
+    values: ['gray', 'black', 'red', 'gold'], //, 'dual'], temporarily disable!
+    captions: ['Silver', 'Black', 'Red', 'Gold'], // , 'Black w/ Silver Text'],
     initial: ''
     },    
     //{name: 'hidePlate', checked: false, type: 'checkbox', caption: 'Hide Plate'},
