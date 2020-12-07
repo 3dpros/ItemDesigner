@@ -12,7 +12,7 @@ function getParameterDefinitions () {
     caption: 'Color',
     values: ['gray', 'black'],
     captions: ['Silver', 'Black'],
-    initial: ''
+    initial: 'black'
     },
     {name: 'SizeOptions', type: 'group', caption: 'Text Size Options'},
     {name: 'textScale', type: 'slider', initial: 100, min: 80, max: 120, step: 1, caption: 'Text Scale'},
@@ -27,7 +27,7 @@ function getParameterDefinitions () {
   },
     //{name: 'hidePlate', checked: false, type: 'checkbox', caption: 'Hide Plate'},
     {name: 'displayOptions', type: 'group', caption: 'Render Options'},   
-    {name: 'whiteLettersInternal', checked: false, type: 'checkbox', caption: 'Preview Painted Letters', internalDefault: false},
+    {name: 'whiteLettersInternal', checked: true, type: 'checkbox', caption: 'Preview Painted Letters', internalDefault: false},
 
     {name: 'showKitInternal', checked: true, type: 'checkbox', caption: 'Show Clock Hands', internalDefault: false},
     {name: 'bananaInternal', checked: false, type: 'checkbox', caption: 'Banana for Scale', internal: true},
