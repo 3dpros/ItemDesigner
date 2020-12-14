@@ -21,7 +21,7 @@ weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, du
     var textScale = (param.textScale == null)?100:param.textScale;
     var kerning = (param.kerning == null)?100:param.kerning;
     var maxSideChars = ((bumperPlate && Mode == "ornament")?4:5)
-    var maxTopBottomChars = bumperPlate?10:15
+    var maxTopBottomChars = bumperPlate?10:(Mode == "ornament")?12:15
 
     var plateColor = colorNameToRGB(param.color)
     var accentColor = dualColor?colorNameToRGB('white'):plateColor.map((a, i) => a - .03);
