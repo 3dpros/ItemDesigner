@@ -15,7 +15,7 @@ logMsg = function log(msg) {
       debugControl.innerHTML += '<br>' + msg;
     }
 
-  validateText = function validateText(text, maxCharsPerLine = 12, maxLines = 2, textLabel = '') {
+  validateText = function validateText(text, maxCharsPerLine = 15, maxLines = 2, textLabel = '') {
       var trimmedArray = [];
       var textArray = text.split('\n')
       if (textArray.length > maxLines) {
@@ -66,7 +66,7 @@ revolveMultilineText =  function revolveMultilineText(text, textAngle = 90, radi
       var allText = [];
       var lineRadius = radius + (textArray.length - 1)/2*textSize -5
       textArray.forEach((word) => {
-        allText.push(revolveText(word, textAngle, lineRadius, faceUp, textSize, font, kerning));
+        allText.push(revolveText(word.trim(), textAngle, lineRadius, faceUp, textSize, font, kerning));
         lineRadius -= textSize
       });
       return union(allText);
