@@ -84,7 +84,7 @@ weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, du
     allObjects.push(baseSTL.setColor(plateColor));
 
     var items = []
-    var plateScalingFactor = [sizeScalingFactor, sizeScalingFactor, (Mode == "ornament")?sizeScalingFactor:(18/14.7)];
+    var plateScalingFactor = [sizeScalingFactor, sizeScalingFactor, (Mode == "ornament")?sizeScalingFactor:pow(18/14.7, .5)];
 
     textObjects.forEach((item, index) => {textObjects[index] = item.scale(plateScalingFactor).scale([1,1,bumperPlate?2.4:1])})
 
