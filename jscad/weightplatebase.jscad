@@ -86,14 +86,13 @@ weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, du
     var items = []
     var plateScalingFactor = [sizeScalingFactor, sizeScalingFactor, (Mode == "ornament")?sizeScalingFactor:pow(18/14.7, .5)];
 
-    textObjects.forEach((item, index) => {textObjects[index] = item.scale(plateScalingFactor).scale([1,1,bumperPlate?2.4:1])})
+    textObjects.forEach((item, index) => {textObjects[index] = item.scale([1,1,bumperPlate?2.4:1])})
 
     if(bumperPlate && !dualColor) {
-      items.push(union(allObjects).subtract(cutObjects).scale(plateScalingFactor).subtract(union(textObjects).union(unscaledCutObjects)));
+      items.push(union(allObjects).subtract(cutObjects).scale(plateScalingFactor).subtract(union(textObjects).scale(plateScalingFactor).union(unscaledCutObjects)));
     } else {
       if(renderMode == 'all') {
-      items.push(union(allObjects).subtract(union(cutObjects)).scale(plateScalingFactor).subtract(unscaledCutObjects));
-      items = items.concat(textObjects);
+      items.push(union(textObjects).union(allObjects).subtract(union(cutObjects)).scale(plateScalingFactor).subtract(unscaledCutObjects));
       }
       if(renderMode == 'text') {
         items = items.concat(union(textObjects).subtract(union(allObjects).scale(plateScalingFactor)));
