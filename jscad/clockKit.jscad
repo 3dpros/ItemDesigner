@@ -3,12 +3,10 @@ clockAssm = function clockAssm(clockSize = 11, lightHands = false, showSecondHan
     var handColor = lightHands?[1,1,1]:[0,0,0]
     parts.push(kitBase());
     parts.push(kitSilver());
-    if(clockSize == 11 || clockSize == 15) {
+   // if(clockSize == 11 || clockSize == 15) 
+   {
         parts.push(hourHand(handColor));
-        if(showSecondHand === true)
-        {
-          parts.push(secondHand());
-        }
+        parts.push(secondHand());
     }
     if(clockSize == 11) {
         parts.push(minuteHand_11(handColor)); 

@@ -7,13 +7,6 @@ function getParameterDefinitions () {
     {name: 'BottomText', initial: 'STANDARD', type: 'textbox', caption: 'Bottom Text', maxLength: 14},
     {name: 'LeftText', initial: '45\nLBS', type: 'textbox', caption: 'Left Text'},
     {name: 'RightText', initial: '20.4\nKGS', type: 'textbox', caption: 'Right Text'},
-    {name: 'color',
-    type: 'choice',
-    caption: 'Color',
-    values: ['gray', 'black'],
-    captions: ['Silver', 'Black'],
-    initial: 'black'
-    },
     {name: 'SizeOptions', type: 'group', caption: 'Text Size Options'},
     {name: 'textScale', type: 'slider', initial: 100, min: 80, max: 120, step: 1, caption: 'Text Scale'},
     {name: 'kerning', type: 'slider', initial: 100, min: 80, max: 120, step: 1, caption: 'Letter Spacing'},
@@ -40,11 +33,11 @@ function main (param) {
   include("./weightplatebase.jscad");
   include("/../clockKit.jscad");
   include("/../base.jscad");
-
+  param.color = 'black'
   var items = [];
   items = weightPlateBase(param, Mode = "clock");
   if(param.showKitInternal) {
-    items.push(clockAssm(param.sizeOpt, param.color == 'black').translate([-102,-47,-81])); }
+    items.push(clockAssm(param.sizeOpt, param.color == 'black', true).translate([-102,-47,-81])); }
 //  item = allItemBase(param, item);
   return items;
 }
