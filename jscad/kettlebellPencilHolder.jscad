@@ -43,7 +43,7 @@ function getParameterDefinitions () {
     caption: 'Render Mode',
     values: ['all', 'base', 'text'],
     captions: ['Show All', 'Base Only', 'Text Only'],
-    initial: 'all', internal: true
+    initial: 'base', internal: true
   },
     //{name: 'color', type: 'color', initial: '#0F0F0F', caption: 'Color?'}
     
@@ -52,7 +52,7 @@ function getParameterDefinitions () {
 
 function main (param) {
   include("/../kettlebellModelBase.jscad");
-  return kettlebellModel(param);
+  return kettlebellModel(param, dualColor = false);
 }
 
 
