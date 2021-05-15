@@ -5,11 +5,12 @@ kettlebellModel = function kettlebellModel (param, dualColor = true) {
   include("/../kettlebell.jscad");
   include("/../base.jscad");
   var baseTextSize = 10
+  var maxCharsPerLine = 19
 
- var text = validateText(param.Text, maxCharsPerLine = 18, maxLines = 4)
+ var text = validateText(param.Text, maxCharsPerLine, maxLines = 4)
  var backtext = text
  if(param.BackText != '') {
- var backtext = validateText(param.BackText, maxCharsPerLine = 18, maxLines = 4)
+ var backtext = validateText(param.BackText, maxCharsPerLine, maxLines = 4)
  }
  
   var maxTextLength = getTotalCharLen(text, baseTextSize, param.style);

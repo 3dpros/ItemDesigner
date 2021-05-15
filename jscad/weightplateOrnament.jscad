@@ -14,8 +14,9 @@ function getParameterDefinitions () {
     captions: ['Silver', 'Black', 'Red', 'Gold'], // , 'Black w/ Silver Text'],
     initial: ''
     },    
+    {name: 'textScale', type: 'slider', initial: 100, min: 80, max: 120, step: 1, caption: 'Text Scale'},
+    {name: 'kerning', type: 'slider', initial: 100, min: 80, max: 120, step: 1, caption: 'Letter Spacing'},
     //{name: 'hidePlate', checked: false, type: 'checkbox', caption: 'Hide Plate'},
-    {name: 'bananaInternal', checked: false, type: 'checkbox', caption: 'Banana for Scale', internal: true},
     {name: 'renderMode',
     type: 'choice',
     caption: 'Render Mode',
