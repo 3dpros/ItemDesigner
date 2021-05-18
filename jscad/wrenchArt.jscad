@@ -9,7 +9,7 @@ function getParameterDefinitions () {
     {name: 'textPos', type: 'slider', initial: 0, min: -20, max: 20, step: 1, caption: 'Text Position'},
 
   //  {name: 'kerning', type: 'slider', initial: 100, min: 80, max: 120, step: 1, caption: 'Letter Spacing'},
-  {name: 'banana', checked: false, type: 'checkbox', caption: 'Banana for Scale'},
+  {name: 'bananaInternal', checked: false, type: 'checkbox', caption: 'Banana for Scale'},
 
 
     //{name: 'color', type: 'color', initial: '#0F0F0F', caption: 'Color?'}
@@ -31,7 +31,7 @@ function main (param) {
   var textVector = linear_extrude({height: 4}, straightText(text, 22 * param.textScale/100, param.style)).translate([2 + param.textPos,-19 + .1*param.textScale/100,16])
   objects.push(textVector.setColor([.7,.7,.7]));
   objects.push(wrench().setColor([.65,.65,.65]));
-  if(param.banana !== null && param.banana) {
+  if(param.bananaInternal !== null && param.bananaInternal) {
     objects.push(banana().rotateX(90).translate([-225,150,200]).scale(.68));
   }
 
