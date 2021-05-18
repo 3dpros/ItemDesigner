@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<!--
+
+== OpenJSCAD.org, Copyright (c) 2016-2017, Licensed under MIT License ==
+   in conjunction with other libraries by various authors (see the individual files)
+-->
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width">
+  <title>Customizer</title>
+  <link rel="stylesheet" href="min.css" type="text/css">
+
+</head>
+
+
+<body>
+  <script src="dist/min.js"></script>
+<div id="mainUI">
+<!-- setup display of the errors as required by OpenJSCAD.js -->
+  <div class="jscad-container">
+    <div id="statusdiv"></div>
+
+
+<!-- setup display of the viewer, i.e. canvas -->
+    <div oncontextmenu="return false;" class="column" div id="viewerContext" design-url="jscad/wrenchArt.jscad" internalViewer=true></div>
+    
+        
+
+
+<!-- setup display of the status, as required by OpenJSCAD.js -->
+<!-- set display: block to display this -->
+    <div class="column" id="tail">
+        <div id="parametersdiv"></div> 
+    </div>
+</div>
+
+    <div id="urlDiv">
+        <div id="internal" hidden = true>  <!-- only shown for internal viewer -->
+        <p><a href="" id="urlLink">Custom Link</a><div id="debug"></div></p>  
+        </div>
+        <div id='postUI'>
+            <p>Design ID: <textarea id="designID"></textarea></p>
+            <p><button  id="copyDesignID">Copy Design ID</button><button  id="generateFromDesignID" title="regenerate the item from the current design ID">Generate from Design ID</button></p>
+
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
