@@ -3,7 +3,7 @@
 function getParameterDefinitions () {
   return [
     {name: 'Design', type: 'group', caption: 'Design Options'},
-    {name: 'Text', initial: 'Custom Text', type: 'text', caption: 'Top Text', maxLength: 20},
+    {name: 'Text', initial: 'Custom Text', type: 'text', caption: 'Text', maxLength: 20},
     {name: 'SizeOptions', type: 'group', caption: 'Text Size Options'},
     {name: 'textScale', type: 'slider', initial: 100, min: 80, max: 120, step: 1, caption: 'Text Scale'},
     {name: 'textPos', type: 'slider', initial: 0, min: -20, max: 20, step: 1, caption: 'Text Position'},
