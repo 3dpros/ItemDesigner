@@ -25,16 +25,21 @@ function main (param) {
 
 
   var objects = [];
+  var holeobjects = [];
+
   var text = validateText(param.Text, 24, maxLines = 1)
   if(text.trim() == '')
     return wrench().setColor([.65,.65,.65])
   var textVector = linear_extrude({height: 4}, straightText(text, 22 * param.textScale/100, param.style)).translate([2 + param.textPos,-19 + .1*param.textScale/100,16])
   objects.push(textVector.setColor([.7,.7,.7]));
   objects.push(wrench().setColor([.65,.65,.65]));
+  holeobjects.push(cylinder({r:2,h:20}).translate([120,-20,-3]).setColor([.7,.7,.7]));
+  holeobjects.push(cylinder({r:2,h:20}).translate([-120,-20,-3]).setColor([.7,.7,.7]));
+
   if(param.bananaInternal !== null && param.bananaInternal) {
     objects.push(banana().rotateX(90).translate([-225,150,200]).scale(.68));
   }
 
-  return objects;
+  return union(objects).subtract(union(holeobjects));
 
 }
