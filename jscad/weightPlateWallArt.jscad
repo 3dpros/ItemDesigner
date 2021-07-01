@@ -15,13 +15,6 @@ function getParameterDefinitions () {
     initial: '15',
     internal: true
     },
-    {name: 'color',
-    type: 'choice',
-    caption: 'Color',
-    values: ['gray', 'black'],
-    captions: ['Gray', 'Black'],
-    initial: ''
-    },
     {name: 'SizeOptions', type: 'group', caption: 'Text Size Options'},
     {name: 'textScale', type: 'slider', initial: 100, min: 80, max: 120, step: 1, caption: 'Text Scale'},
     {name: 'kerning', type: 'slider', initial: 100, min: 80, max: 120, step: 1, caption: 'Letter Spacing'},
@@ -37,6 +30,7 @@ function getParameterDefinitions () {
 
 function main (param) {
   include("./weightplatebase.jscad");
+  param.color = 'black'
 
   return weightPlateBase(param,  Mode = "wallart");
 

@@ -20,7 +20,7 @@ weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, du
     var renderMode = (param.renderMode == null)?'all':param.renderMode;
     var textScale = (param.textScale == null)?100:param.textScale;
     var kerning = (param.kerning == null)?100:param.kerning;
-    var maxSideChars = ((bumperPlate && Mode == "ornament")?4:5)
+    var maxSideChars = ((bumperPlate && Mode == "ornament")?4:6)
     var maxTopBottomChars = bumperPlate?10:(Mode == "ornament")?12:15
 
     var plateColor = colorNameToRGB(param.color)
@@ -37,22 +37,21 @@ weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, du
     var maxTextLength = max(getTotalCharLen(topText, baseTextSize,  font = font, [0,0.2]), getTotalCharLen(bottomText, baseTextSize, font = font, [0,0.2]))
     var textSize = min(baseTextSize, (165*baseTextSize)/maxTextLength) * textAdjustFactor * textScale / 100;
   var textHeight = (Mode == "ornament")?(bumperPlate?5:7):4;
-  var textRadius = bumperPlate?122:134;
-  var sideTextOffset = bumperPlate?112:107
-  var textSpan = bumperPlate?130:80;
-  var sideTextSize = textSize
+  var textRadius = bumperPlate?122:(Mode == "ornament")?143:134;
+ var textSpan = bumperPlate?130:80;
+  var sideTextSize = textSize*.94
  //for bumper plates, scale the side text a bit smaller if needed since there is less room
   if(bumperPlate)
   {
     var maxSideTextLength = max(getTotalCharLen(param.LeftText, baseTextSize,  font = font), getTotalCharLen(param.RightText, baseTextSize, font = font))
     sideTextSize = min(baseTextSize, (58*baseTextSize)/maxSideTextLength) * textAdjustFactor
   }
-  var sideTextOffset = bumperPlate?112:(sideTextSize == baseTextSize)?110:106
+  var sideTextOffset = bumperPlate?112:(sideTextSize == baseTextSize)?110:(Mode == "ornament")?111:106
 
   if(leftText !== ''){textObjects.push(linear_extrude({height: textHeight}, straightText(leftText, sideTextSize, font = font)).setColor(textColor).translate([-sideTextOffset,0,0]));}
   if(rightText !== ''){textObjects.push(linear_extrude({height: textHeight}, straightText(rightText, sideTextSize, font = font)).rotateZ(invertText?180:0).setColor(textColor).translate([sideTextOffset,0,0]))}
   if(topText !== ''){textObjects.push(linear_extrude({height: textHeight}, revolveMultilineText(topText, textSpan, textRadius, true, textSize = textSize, font = font, kerning/100)).setColor(textColor));}
-  if(bottomText !== ''){textObjects.push(linear_extrude({height: textHeight}, revolveMultilineText(bottomText, textSpan, textRadius, invertText, textSize = textSize, font = font, kerning/100)).rotateZ(180).setColor(textColor));}
+  if(bottomText !== ''){textObjects.push(linear_extrude({height: textHeight}, revolveMultilineText(bottomText, textSpan, textRadius, true, textSize = textSize, font = font, kerning/100)).rotateZ(180).setColor(textColor));}
   if(Mode == "clock") {
     cutObjects.push(clockTicks().scale(bumperPlate?.99:1).setColor(accentColor));
     //clock kit hole
@@ -86,16 +85,16 @@ weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, du
     var items = []
     var plateScalingFactor = [sizeScalingFactor, sizeScalingFactor, (Mode == "ornament")?sizeScalingFactor:pow(18/14.7, .5)];
 
-    textObjects.forEach((item, index) => {textObjects[index] = item.scale([1,1,bumperPlate?2.4:1])})
+    textObjects.forEach((item, index) => {textObjects[index] = item})
 
     if(bumperPlate && !dualColor) {
-      items.push(union(allObjects).subtract(cutObjects).scale(plateScalingFactor).subtract(union(textObjects).scale(plateScalingFactor).union(unscaledCutObjects)));
+      items.push(union(allObjects).subtract(cutObjects).scale(plateScalingFactor).subtract(union(textObjects).scale([1,1,2.4]).scale(plateScalingFactor).union(unscaledCutObjects)));
     } else {
       if(renderMode == 'all') {
       items.push(union(textObjects).union(allObjects).subtract(union(cutObjects)).scale(plateScalingFactor).subtract(unscaledCutObjects));
       }
       if(renderMode == 'text') {
-        items = items.concat(union(textObjects).subtract(union(allObjects).scale(plateScalingFactor)));
+        items.push(union(textObjects).subtract(union(allObjects)).scale(plateScalingFactor));
       }
       if(renderMode == 'base') {
         items.push(union(allObjects).subtract(union(cutObjects)).scale(plateScalingFactor).subtract(unscaledCutObjects));
