@@ -20,7 +20,7 @@ weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, du
     var renderMode = (param.renderMode == null)?'all':param.renderMode;
     var textScale = (param.textScale == null)?100:param.textScale;
     var kerning = (param.kerning == null)?100:param.kerning;
-    var maxSideChars = ((bumperPlate && Mode == "ornament")?4:6)
+    var maxSideChars = ((bumperPlate && Mode == "ornament")?4:7)
     var maxTopBottomChars = bumperPlate?10:(Mode == "ornament")?12:15
 
     var plateColor = colorNameToRGB(param.color)
@@ -98,6 +98,11 @@ weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, du
       }
       if(renderMode == 'base') {
         items.push(union(allObjects).subtract(union(cutObjects)).scale(plateScalingFactor).subtract(unscaledCutObjects));
+      }
+      if(param.hideClock)
+      {
+        items = []
+        items.push(union(textObjects).scale(plateScalingFactor));
       }
 
 
