@@ -6910,7 +6910,7 @@ var ShopifyBuy = function() {
                         }, n.render = function() {
                             var t = this;
                             this.component._userEvent("beforeRender");
-                            var e = this.template.render({
+                            var e = this.template.render({ 
                                 data: this.component.viewData
                             }, function(e) {
                                 return t.wrapTemplate(e)
