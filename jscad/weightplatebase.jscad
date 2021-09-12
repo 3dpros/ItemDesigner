@@ -103,6 +103,8 @@ weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, du
       {
         items = []
         items.push(union(textObjects).scale(plateScalingFactor));
+        items.push(cylinder({r: 2, h: .1}).setColor(accentColor)) 
+
       }
 
 

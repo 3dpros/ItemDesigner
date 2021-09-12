@@ -24,7 +24,7 @@ function getParameterDefinitions () {
 
     {name: 'showKitInternal', checked: true, type: 'checkbox', caption: 'Show Clock Hands', internalDefault: false},
     {name: 'bananaInternal', checked: false, type: 'checkbox', caption: 'Banana for Scale', internal: true},
-    {name: 'hideClock', checked: false, type: 'checkbox', caption: 'Letters Only', internal: true},
+    {name: 'hideClock', checked: false, type: 'checkbox', caption: 'Letters Only', internal: true, internalDefault: true},
     //{name: 'color', type: 'color', initial: '#0F0F0F', caption: 'Color?'}
   ];
 }
