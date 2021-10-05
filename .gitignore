@@ -7,3 +7,9 @@ Gemfile
 Gemfile.lock
 Gemfile
 Gemfile
+.sass-cache/6f1d4ccdebd92f8a7e447fd2e2560370640a7ac8/rouge-github.scssc
+.sass-cache/6f1d4ccdebd92f8a7e447fd2e2560370640a7ac8/jekyll-theme-slate.scssc
+Gemfile
+Gemfile.lock
+*.lock
+Gemfile

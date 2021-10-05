@@ -3,12 +3,7 @@ function getParameterDefinitions () {
   return [
     {name: 'Configuration', type: 'group', caption: 'Design Options'},
     {name: 'Text', initial: 'Line 1\nLine 2\nLine 3', type: 'textbox', caption: 'Text', height: '5'},
-    {name: 'color',
-    type: 'choice',
-    caption: 'Color',
-    values: ['black', 'blue', 'green', 'red'],
-    captions: ['Black', 'Blue', 'Green', 'Red']
-    },
+
     {name: 'differentBackText', checked: false, type: 'checkbox', caption: 'Different Text On Back'},
     {name: 'BackText', initial: '', type: 'textbox', caption: 'Text', height: '5'},
     {name: 'style',

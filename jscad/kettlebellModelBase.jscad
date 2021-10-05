@@ -16,7 +16,7 @@ kettlebellModel = function kettlebellModel (param, dualColor = true) {
   var maxTextLength = getTotalCharLen(text, baseTextSize, param.style);
   var textSize = min(baseTextSize, baseTextSize*38/maxTextLength) * param.textScale / 100;
   var textItems = []
-  var bodyColor = colorNameToRGB(param.color)
+  var bodyColor = colorNameToRGB('black')
   var accentColor = dualColor?colorNameToRGB('white'):adjustColor(bodyColor, -.2);
 
   var item  = kettlebell(param.variant).setColor(bodyColor) 
