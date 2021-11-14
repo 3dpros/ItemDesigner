@@ -20,7 +20,7 @@ weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, du
     var renderMode = (param.renderMode == null)?'all':param.renderMode;
     var textScale = (param.textScale == null)?100:param.textScale;
     var kerning = (param.kerning == null)?100:param.kerning;
-    var maxSideChars = ((bumperPlate && Mode == "ornament")?4:7)
+    var maxSideChars = ((bumperPlate && Mode == "ornament")?5:7)
     var maxTopBottomChars = bumperPlate?10:(Mode == "ornament")?12:15
 
     var plateColor = colorNameToRGB(param.color)
@@ -36,7 +36,7 @@ weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, du
   
     var maxTextLength = max(getTotalCharLen(topText, baseTextSize,  font = font, [0,0.2]), getTotalCharLen(bottomText, baseTextSize, font = font, [0,0.2]))
     var textSize = min(baseTextSize, (165*baseTextSize)/maxTextLength) * textAdjustFactor * textScale / 100;
-  var textHeight = (Mode == "ornament")?(bumperPlate?5:7):4;
+  var textHeight = (Mode == "ornament")?(bumperPlate?11:7):4;
   var textRadius = bumperPlate?122:(Mode == "ornament")?143:134;
  var textSpan = bumperPlate?130:80;
   var sideTextSize = textSize*.94
@@ -102,7 +102,7 @@ weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, du
       if(param.hideClock)
       {
         items = []
-        items.push(union(textObjects).scale(plateScalingFactor));
+        items.push(union(textObjects).scale(plateScalingFactor).scale([1,1,.88]));
         items.push(cylinder({r: 2, h: .1}).setColor(accentColor)) 
 
       }
