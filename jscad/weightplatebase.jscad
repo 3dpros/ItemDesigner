@@ -10,6 +10,9 @@ weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, du
 
   if(param.invertText != null) {
     invertText = param.invertText;
+  }  
+  if(param.invertRightText != null) {
+    invertRightText = param.invertRightText;
   }
     var size = param.sizeOpt;
     var cutObjects = []; // our stack of objects
@@ -49,7 +52,7 @@ weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, du
   var sideTextOffset = bumperPlate?112:(sideTextSize == baseTextSize)?110:(Mode == "ornament")?111:106
 
   if(leftText !== ''){textObjects.push(linear_extrude({height: textHeight}, straightText(leftText, sideTextSize, font = font)).setColor(textColor).translate([-sideTextOffset,0,0]));}
-  if(rightText !== ''){textObjects.push(linear_extrude({height: textHeight}, straightText(rightText, sideTextSize, font = font)).rotateZ(invertText?180:0).setColor(textColor).translate([sideTextOffset,0,0]))}
+  if(rightText !== ''){textObjects.push(linear_extrude({height: textHeight}, straightText(rightText, sideTextSize, font = font)).rotateZ((invertText || invertRightText)?180:0).setColor(textColor).translate([sideTextOffset,0,0]))}
   if(topText !== ''){textObjects.push(linear_extrude({height: textHeight}, revolveMultilineText(topText, textSpan, textRadius, true, textSize = textSize, font = font, kerning/100)).setColor(textColor));}
   if(bottomText !== ''){textObjects.push(linear_extrude({height: textHeight}, revolveMultilineText(bottomText, textSpan, textRadius, invertText, textSize = textSize, font = font, kerning/100)).rotateZ(180).setColor(textColor));}
   if(Mode == "clock") {

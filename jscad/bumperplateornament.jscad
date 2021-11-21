@@ -27,6 +27,7 @@ function getParameterDefinitions () {
     initial: 'all', internal: true
   },
   {name: 'scaledForViewing', checked: true, type: 'checkbox', caption: 'Scale for Viewing', internalDefault: false, internal: true},
+  {name: 'invertRightText', checked: false, type: 'checkbox', caption: 'Invert Right', internal: true},
 
   ];
 }
