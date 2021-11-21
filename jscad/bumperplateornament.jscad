@@ -15,6 +15,7 @@ function getParameterDefinitions () {
     initial: ''
     },    
     {name: 'invertText', checked: false, type: 'checkbox', caption: 'Invert Right and Bottom'},
+    {name: 'invertRightText', checked: false, type: 'checkbox', caption: 'Invert Right Only', internal: true},
     //{name: 'hidePlate', checked: false, type: 'checkbox', caption: 'Hide Plate'},
     {name: 'displayOptions', type: 'group', caption: 'Render Options'},   
     {name: 'bananaInternal', checked: false, type: 'checkbox', caption: 'Banana for Scale', internal: true},
@@ -27,7 +28,6 @@ function getParameterDefinitions () {
     initial: 'all', internal: true
   },
   {name: 'scaledForViewing', checked: true, type: 'checkbox', caption: 'Scale for Viewing', internalDefault: false, internal: true},
-  {name: 'invertRightText', checked: false, type: 'checkbox', caption: 'Invert Right', internal: true},
 
   ];
 }
