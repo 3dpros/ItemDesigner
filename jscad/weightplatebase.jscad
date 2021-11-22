@@ -7,7 +7,7 @@ weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, du
   include("/../weightPlate.jscad");
   include("/../base.jscad");
   invertText = false;
-
+  invertRightText = false
   if(param.invertText != null) {
     invertText = param.invertText;
   }  
