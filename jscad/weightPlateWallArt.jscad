@@ -20,7 +20,7 @@ function getParameterDefinitions () {
     {name: 'kerning', type: 'slider', initial: 100, min: 80, max: 120, step: 1, caption: 'Letter Spacing'},
     {name: 'displayOptions', type: 'group', caption: 'Render Options'},   
 
-    {name: 'whiteLettersInternal', checked: true, type: 'checkbox', caption: 'Preview Painted Letters', Default: false},
+    {name: 'hideClockInternal', checked: false, type: 'checkbox', caption: 'Letters Only', internal: true, internalDefault: true, default: false},
     {name: 'bananaInternal', checked: false, type: 'checkbox', caption: 'Banana for Scale',  internal: true},   
     //{name: 'color', type: 'color', initial: '#0F0F0F', caption: 'Color?'}
   ];

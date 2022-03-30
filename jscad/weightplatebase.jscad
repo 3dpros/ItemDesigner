@@ -24,7 +24,7 @@ weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, du
     var textScale = (param.textScale == null)?100:param.textScale;
     var kerning = (param.kerning == null)?100:param.kerning;
     var maxSideChars = ((bumperPlate && Mode == "ornament")?5:7)
-    var maxTopBottomChars = bumperPlate?10:(Mode == "ornament")?12:15
+    var maxTopBottomChars = bumperPlate?12:(Mode == "ornament")?12:15
 
     var plateColor = colorNameToRGB(param.color)
     var accentColor = dualColor?colorNameToRGB('white'):plateColor.map((a, i) => a - .03);
@@ -102,12 +102,17 @@ weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, du
       if(renderMode == 'base') {
         items.push(union(allObjects).subtract(union(cutObjects)).scale(plateScalingFactor).subtract(unscaledCutObjects));
       }
-      if(param.hideClock)
+      if(param.hideClockInternal)
       {
         items = []
         items.push(union(textObjects).scale(plateScalingFactor).scale([1,1,.88]));
-        items.push(cylinder({r: 2, h: .1}).setColor(accentColor)) 
 
+        //add non-printed circles for alignment
+        items.push(cylinder({r: 2, h: .1}).setColor(accentColor))
+        items.push(cylinder({r: 2, h: .1}).setColor(accentColor).translate([225,225,0]))
+        items.push(cylinder({r: 2, h: .1}).setColor(accentColor).translate([-225,225,0]))
+        items.push(cylinder({r: 2, h: .1}).setColor(accentColor).translate([225,-225,0]) )
+        items.push(cylinder({r: 2, h: .1}).setColor(accentColor).translate([-225,-225,0]) )
       }
 
 

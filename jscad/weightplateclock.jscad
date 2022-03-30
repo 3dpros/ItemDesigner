@@ -8,8 +8,8 @@ function getParameterDefinitions () {
     {name: 'LeftText', initial: '45\nLBS', type: 'textbox', caption: 'Left Text'},
     {name: 'RightText', initial: '20.4\nKGS', type: 'textbox', caption: 'Right Text'},
     {name: 'SizeOptions', type: 'group', caption: 'Text Size Options'},
-    {name: 'textScale', type: 'slider', initial: 100, min: 80, max: 120, step: 1, caption: 'Text Scale'},
-    {name: 'kerning', type: 'slider', initial: 100, min: 80, max: 120, step: 1, caption: 'Letter Spacing'},
+    {name: 'textScale', type: 'slider', initial: 100, min: 60, max: 120, step: 1, caption: 'Text Scale'},
+    {name: 'kerning', type: 'slider', initial: 100, min: 60, max: 120, step: 1, caption: 'Letter Spacing'},
     {name: 'sizeOpt',
     type: 'choice',
     caption: 'Clock Diameter',
@@ -20,11 +20,10 @@ function getParameterDefinitions () {
   },
     //{name: 'hidePlate', checked: false, type: 'checkbox', caption: 'Hide Plate'},
     {name: 'displayOptions', type: 'group', caption: 'Render Options'},   
-    {name: 'whiteLettersInternal', checked: true, type: 'checkbox', caption: 'Preview Painted Letters', internalDefault: false},
 
     {name: 'showKitInternal', checked: true, type: 'checkbox', caption: 'Show Clock Hands', internalDefault: false},
     {name: 'bananaInternal', checked: false, type: 'checkbox', caption: 'Banana for Scale', internal: true},
-    {name: 'hideClock', checked: false, type: 'checkbox', caption: 'Letters Only', internal: true, internalDefault: true},
+    {name: 'hideClockInternal', checked: false, type: 'checkbox', caption: 'Letters Only', internal: true, internalDefault: true, default: false},
     //{name: 'color', type: 'color', initial: '#0F0F0F', caption: 'Color?'}
   ];
 }
