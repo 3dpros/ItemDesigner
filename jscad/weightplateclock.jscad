@@ -35,7 +35,7 @@ function main (param) {
   include("/../base.jscad");
   param.color = 'black'
   var items = [];
-  items = weightPlateBase(param, Mode = "clock");
+  items = weightPlateBase(param, Mode = "clock", false, true);
   if(param.showKitInternal) {
     items.push(clockAssm(param.sizeOpt, param.color == 'black', true).translate([-102,-47,-81])); }
 //  item = allItemBase(param, item);

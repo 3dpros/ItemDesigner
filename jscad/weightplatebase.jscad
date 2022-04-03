@@ -56,7 +56,7 @@ weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, du
   if(topText !== ''){textObjects.push(linear_extrude({height: textHeight}, revolveMultilineText(topText, textSpan, textRadius, true, textSize = textSize, font = font, kerning/100)).setColor(textColor));}
   if(bottomText !== ''){textObjects.push(linear_extrude({height: textHeight}, revolveMultilineText(bottomText, textSpan, textRadius, invertText, textSize = textSize, font = font, kerning/100)).rotateZ(180).setColor(textColor));}
   if(Mode == "clock") {
-    cutObjects.push(clockTicks().scale(bumperPlate?.99:1).setColor(accentColor));
+    cutObjects.push(clockTicks().scale(bumperPlate?.99:1).setColor(plateColor));
     //clock kit hole
     unscaledCutObjects.push(cylinder({r: 5, h: 30, center: true}).setColor(accentColor)) 
     allObjects.push(cylinder({r: 20, h: 2, center: true}).setColor(plateColor));
