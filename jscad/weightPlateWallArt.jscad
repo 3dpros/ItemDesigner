@@ -18,11 +18,9 @@ function getParameterDefinitions () {
     {name: 'SizeOptions', type: 'group', caption: 'Text Size Options'},
     {name: 'textScale', type: 'slider', initial: 100, min: 80, max: 120, step: 1, caption: 'Text Scale'},
     {name: 'kerning', type: 'slider', initial: 100, min: 80, max: 120, step: 1, caption: 'Letter Spacing'},
-    {name: 'displayOptions', type: 'group', caption: 'Render Options'},   
 
     {name: 'hideClockInternal', checked: false, type: 'checkbox', caption: 'Letters Only', internal: true, internalDefault: true, default: false},
     {name: 'bananaInternal', checked: false, type: 'checkbox', caption: 'Banana for Scale',  internal: true},   
-    //{name: 'color', type: 'color', initial: '#0F0F0F', caption: 'Color?'}
   ];
 }
 
@@ -32,6 +30,6 @@ function main (param) {
   include("./weightplatebase.jscad");
   param.color = 'black'
 
-  return weightPlateBase(param,  Mode = "wallart");
+  return weightPlateBase(param,  Mode = "wallart", false, true);
 
 }
