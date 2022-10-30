@@ -109,10 +109,10 @@ weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, du
 
         //add non-printed circles for alignment
         items.push(cylinder({r: 2, h: .1}).setColor(accentColor))
-        items.push(cylinder({r: 2, h: .1}).setColor(accentColor).translate([225,225,0]))
-        items.push(cylinder({r: 2, h: .1}).setColor(accentColor).translate([-225,225,0]))
-        items.push(cylinder({r: 2, h: .1}).setColor(accentColor).translate([225,-225,0]) )
-        items.push(cylinder({r: 2, h: .1}).setColor(accentColor).translate([-225,-225,0]) )
+        items.push(cylinder({r: 2, h: .1}).setColor(accentColor).translate([200,200,0]))
+        items.push(cylinder({r: 2, h: .1}).setColor(accentColor).translate([-200,200,0]))
+        items.push(cylinder({r: 2, h: .1}).setColor(accentColor).translate([200,-200,0]) )
+        items.push(cylinder({r: 2, h: .1}).setColor(accentColor).translate([-200,-200,0]) )
       }
 
 
