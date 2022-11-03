@@ -22,6 +22,7 @@ weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, du
     var p = []; // our stack of extruded line segments
     var renderMode = (param.renderMode == null)?'all':param.renderMode;
     var textScale = (param.textScale == null)?100:param.textScale;
+    var bottomTextScale = (param.bottomTextScale == 100)?textScale:param.bottomTextScale
     var kerning = (param.kerning == null)?100:param.kerning;
     var maxSideChars = ((bumperPlate && Mode == "ornament")?5:7)
     var maxTopBottomChars = bumperPlate?12:(Mode == "ornament")?12:15
@@ -39,6 +40,8 @@ weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, du
   
     var maxTextLength = max(getTotalCharLen(topText, baseTextSize,  font = font, [0,0.2]), getTotalCharLen(bottomText, baseTextSize, font = font, [0,0.2]))
     var textSize = min(baseTextSize, (165*baseTextSize)/maxTextLength) * textAdjustFactor * textScale / 100;
+    var bottomTextSize = min(baseTextSize, (165*baseTextSize)/maxTextLength) * textAdjustFactor * bottomTextScale / 100;
+
   var textHeight = (Mode == "ornament")?(bumperPlate?11:7):4;
   var textRadius = bumperPlate?122:(Mode == "ornament")?143:134;
  var textSpan = bumperPlate?130:80;
@@ -54,7 +57,7 @@ weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, du
   if(leftText !== ''){textObjects.push(linear_extrude({height: textHeight}, straightText(leftText, sideTextSize, font = font)).setColor(textColor).translate([-sideTextOffset,0,0]));}
   if(rightText !== ''){textObjects.push(linear_extrude({height: textHeight}, straightText(rightText, sideTextSize, font = font)).rotateZ((invertText || invertRightText)?180:0).setColor(textColor).translate([sideTextOffset,0,0]))}
   if(topText !== ''){textObjects.push(linear_extrude({height: textHeight}, revolveMultilineText(topText, textSpan, textRadius, true, textSize = textSize, font = font, kerning/100)).setColor(textColor));}
-  if(bottomText !== ''){textObjects.push(linear_extrude({height: textHeight}, revolveMultilineText(bottomText, textSpan, textRadius, invertText, textSize = textSize, font = font, kerning/100)).rotateZ(180).setColor(textColor));}
+  if(bottomText !== ''){textObjects.push(linear_extrude({height: textHeight}, revolveMultilineText(bottomText, textSpan, textRadius, invertText, textSize = bottomTextSize, font = font, kerning/100)).rotateZ(180).setColor(textColor));}
   if(Mode == "clock") {
     cutObjects.push(clockTicks().scale(bumperPlate?.99:1).setColor(plateColor));
     //clock kit hole

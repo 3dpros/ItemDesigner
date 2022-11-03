@@ -20,7 +20,7 @@ function getParameterDefinitions () {
   },
     //{name: 'hidePlate', checked: false, type: 'checkbox', caption: 'Hide Plate'},
     {name: 'displayOptions', type: 'group', caption: 'Render Options'},   
-
+    {name: 'bottomTextScale', type: 'slider', initial: 100, min: 60, max: 120, step: 1, caption: 'Bottom Text Scale', internal: true},
     {name: 'showKitInternal', checked: true, type: 'checkbox', caption: 'Show Clock Hands', internalDefault: false},
     {name: 'bananaInternal', checked: false, type: 'checkbox', caption: 'Banana for Scale', internal: true},
     {name: 'hideClockInternal', checked: false, type: 'checkbox', caption: 'Letters Only', internal: true, internalDefault: true, default: false},
