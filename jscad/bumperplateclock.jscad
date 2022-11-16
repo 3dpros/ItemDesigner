@@ -16,6 +16,7 @@ function getParameterDefinitions () {
     },
     {name: 'textScale', type: 'slider', initial: 100, min: 60, max: 120, step: 1, caption: 'Text Scale'},
     {name: 'kerning', type: 'slider', initial: 100, min: 60, max: 120, step: 1, caption: 'Letter Spacing'},
+    
     {name: 'sizeOpt',
     type: 'choice',
     caption: 'Clock Diameter',
@@ -27,6 +28,7 @@ function getParameterDefinitions () {
   {name: 'invertText', checked: false, type: 'checkbox', caption: 'Invert Bottom/Right Text', internal: true},
 
     //{name: 'hidePlate', checked: false, type: 'checkbox', caption: 'Hide Plate'},
+    {name: 'bottomTextScale', type: 'slider', initial: 100, min: 60, max: 120, step: 1, caption: 'Bottom Text Scale', internal: true},
     {name: 'displayOptions', type: 'group', caption: 'Render Options'},   
     {name: 'showKitInternal', checked: true, type: 'checkbox', caption: 'Show Clock Hands', internalDefault: false},
     {name: 'bananaInternal', checked: false, type: 'checkbox', caption: 'Banana for Scale', internal: true},

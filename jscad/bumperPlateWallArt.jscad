@@ -23,6 +23,7 @@ function getParameterDefinitions () {
     internal: true
   },
   {name: 'invertText', checked: false, type: 'checkbox', caption: 'Invert Bottom/Right Text', internal: true},
+  {name: 'bottomTextScale', type: 'slider', initial: 100, min: 60, max: 120, step: 1, caption: 'Bottom Text Scale', internal: true},
 
     //{name: 'hidePlate', checked: false, type: 'checkbox', caption: 'Hide Plate'},
     //{name: 'color', type: 'color', initial: '#0F0F0F', caption: 'Color?'}

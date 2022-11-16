@@ -28,6 +28,7 @@ function getParameterDefinitions () {
     initial: 'all', internal: true
   },
   {name: 'scaledForViewing', checked: true, type: 'checkbox', caption: 'Scale for Viewing', internalDefault: false, internal: true},
+  {name: 'bottomTextScale', type: 'slider', initial: 100, min: 60, max: 120, step: 1, caption: 'Bottom Text Scale', internal: true},
 
   ];
 }
