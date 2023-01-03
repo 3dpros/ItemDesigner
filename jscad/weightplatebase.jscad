@@ -8,11 +8,15 @@ weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, du
   include("/../base.jscad");
   invertText = false;
   invertRightText = false
+  bottomTextScale = 100
   if(param.invertText != null) {
     invertText = param.invertText;
   }  
   if(param.invertRightText != null) {
     invertRightText = param.invertRightText;
+  }
+  if(param.bottomTextScale != null) {
+    bottomTextScale = param.bottomTextScale;
   }
     var size = param.sizeOpt;
     var cutObjects = []; // our stack of objects
@@ -53,7 +57,7 @@ weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, du
     sideTextSize = min(baseTextSize, (58*baseTextSize)/maxSideTextLength) * textAdjustFactor
   }
   var sideTextOffset = bumperPlate?112:(sideTextSize == baseTextSize)?110:(Mode == "ornament")?111:106
-
+  textObjects.push(cylinder({r: 2, h: .1}).setColor(accentColor))
   if(leftText !== ''){textObjects.push(linear_extrude({height: textHeight}, straightText(leftText, sideTextSize, font = font)).setColor(textColor).translate([-sideTextOffset,0,0]));}
   if(rightText !== ''){textObjects.push(linear_extrude({height: textHeight}, straightText(rightText, sideTextSize, font = font)).rotateZ((invertText || invertRightText)?180:0).setColor(textColor).translate([sideTextOffset,0,0]))}
   if(topText !== ''){textObjects.push(linear_extrude({height: textHeight}, revolveMultilineText(topText, textSpan, textRadius, true, textSize = textSize, font = font, kerning/100)).setColor(textColor));}
@@ -90,9 +94,7 @@ weightPlateBase = function weightPlateBase (param, Mode, bumperPlate = false, du
 
     var items = []
     var plateScalingFactor = [sizeScalingFactor, sizeScalingFactor, (Mode == "ornament")?sizeScalingFactor:pow(18/14.7, .5)];
-
     textObjects.forEach((item, index) => {textObjects[index] = item})
-
     if(bumperPlate && !dualColor) {
       items.push(union(allObjects).subtract(cutObjects).scale(plateScalingFactor).subtract(union(textObjects).scale([1,1,2.4]).scale(plateScalingFactor).union(unscaledCutObjects)));
     } else {
